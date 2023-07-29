@@ -1,8 +1,1015 @@
-<!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-<a href="Project_4_Report_johnj7.html">report</a>
-</body>
+  <head>
+    <style>
+        /* ### TEXT FORMATING ### */
+        body{
+            font-family: "Open Sans",Helvetica,Arial,sans-serif;
+            font-size: 16px;
+            word-wrap: break-word;
+        }
+        .axis{
+            font-family: "Open Sans",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+        }
+        
+        text{
+            font-family: "Open Sans",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+            word-wrap: break-word;
+        } 
+        
+        svg{
+          width:"500";
+          height:"500";
+          font-size: 14px;
+        }
+
+        .row {
+            display: flex;
+          }
+          
+        .column {
+            flex: 50%;
+            padding:12;
+        }
+        
+        .container {
+          position: absolute;
+          top:100px;
+          left:0px;
+          height: 800px;
+          width: 1000px;
+          box-sizing: border-box;
+        } 
+        
+        .panel {
+          position: absolute;
+          z-index: 1;
+          top: 0px;
+          left: 0px;
+          background-color: rgb(245, 244, 241);
+          opacity:1;
+          height: 100%;
+          width: 100%;
+          box-sizing: border-box; 
+          border:1px solid black;
+          padding:30;
+        }
+        
+        /*### ANNOTATION */
+        :root {
+          --accent-color: #E8336D;
+        }
+            
+        .annotate{
+          font-family: "Open Sans",Helvetica,Arial,sans-serif;
+          font-size: 20;
+          word-wrap: break-word;
+        }
+        
+        .annotation path {
+          stroke: var(--accent-color);
+          stroke-width:2;
+          fill: none;
+        }
+
+        .annotation text {
+          fill: var(--accent-color);
+          font-size: 20;
+        }
+
+        .annotation-note-title {
+          font-weight: bold;
+        }
+        
+        .annotation.badge path.subject-pointer, .annotation.badge path.subject {
+          fill: var(--accent-color);
+          stroke-width: 3px;
+          stroke-linecap: round;
+        } 
+
+        .annotation.badge path.subject-ring {
+          fill: white;
+          stroke-width: 3px;
+        }
+    
+        .annotation.badge .badge-text {
+          fill: white;
+          font-size: .7em;
+        }
+        
+        rect.annotation-note-bg {
+          fill: rgba(255, 255, 255, 0);
+        }
+            
+        path.note-line{
+            opacity:0
+        }
+        
+        
+        
+       /* ### TOOLTIP FORMATING ### */
+        .annotation-tip .annotation-note-bg {
+          fill:white;
+          fill-opacity:0.9;
+        }
+      
+        #viz0 {
+            background: url(./CSOMap500375NoTitle.png);
+            background-repeat: no-repeat;
+            background-size: auto;
+        }
+        
+        #viz1 {
+            background: url(./CamMap2022.png);
+            background-repeat: no-repeat;
+            background-size: auto;
+            padding:10px;
+        }
+
+        .tooltip {
+          opacity: 1;
+          position: absolute;
+          text-align: center;
+          width:60px; height:40px;
+          background: white;
+          border: 1px;
+        }
+          
+        .horizontal-line {
+           stroke:black;
+           stroke-width: 2px;
+           stroke-dasharray: 4,4;
+        }
+        
+        .area_box {
+          stroke:purple;
+          stroke-width: 2;
+          fill: none;
+        } 
+        
+        .area_text {
+          stroke: purple;
+          fill:purple;
+          
+        }
+            
+        
+    </style>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
+
+  </head>
+  <body
+    <p>
+      <button type="button" onclick="showAnnotation">Test</button>
+
+    </p>
+    <p>
+      <input type="range" id="pageno" name="pageno"
+             value="0", min="0" max="5">
+      <label for="pageno">Page#</label>
+    </p>
+    
+    <div class=container>
+        <div class="panel", id="s0", style="z-index:3;">
+          <div class='row'>
+            <h1> Cambrige Cycling Safety Ordinance - Are we safer?</h1>
+          </div class='row'>
+          <div class="row">
+            <div class="column">
+              <h3>CSO Specifies 22.6 Miles of Protecte Bike Lanes</h3>
+              <svg id="viz0", width="500" height="500"></svg>
+            </div class='column'>
+            
+            <div class='column'>
+              <div class='row'>
+                <h1> </h1>
+              </div class='row'>
+              <div class='row'>
+                <h1> </h1>
+              </div class='row'>
+              <div class='row'>
+          
+The Cycling Safety Ordinance (CSO) focuses on a small and specific component of the city's street system. The Cambridge City Council enacted the CSO in 2019 and amended it in 2020. The CSO dictates the installation of 22.6 miles of “quick build” or permanent construction separated bike lanes (shown on right) on the city’s busiest corridors by 2026. The ordinance mandates a strict timeline and a separated bike lane design with provisions to discourage the City Manager from changing the implementation. Despite the word “safety” in the CSO’s title, it does not prescribe any safetyrequirements for infrastructure design nordoes it set safety requirements for bicycles or any other user of the roads. Neither does itprovide provisions to evaluate the safetyimpacts of this ordinance or adjust forconsequences such as the impact onbusinesses, unsafe traffic patterns, or parking supply. 
+              </div class='row'>
+            </div class='column'>
+          </div class='row'>
+        </div class='panel'>
+
+
+        
+        <div class="panel", id="s1">
+          <div class="row">
+            <div class='column'>
+              <p>
+                  <svg id="viz1", width="500", height="500">
+                    <g id="s1_chart", opacity=1>
+                      <svg id="viz1_a", x="190", y="170", width="300", height="150" ></svg>
+                    </g>
+                    <g id="s1_boxes", opacity=1>
+                      <text class="area_text", x="57", y="10">North Mass Ave</text>
+                      <text class="area_text", style="font-size:80%;", x="57", y="26">Install Sep-2021</text>
+                      <rect class="area_box", id=s1_nma, onmouseover="s1_ttipOn('sl_m')", onmouseout="s1_ttipOff()", x="5", y="0", height="40", width="50"></rect>
+                      
+                      <text class="area_text", x="162", y="125">Porter Square</text>
+                      <text class="area_text", style="font-size:80%;", x="162", y="139">Install Jul-2022</text>
+                      <rect class="area_box", x="120", y="115", height="32", width="40"></rect>
+                      <text class="area_text", x="242", y="340">Mid Mass Ave</text>
+                      <text class="area_text", style="font-size:80%;stroke:purple;fill:purple", x="242", y="353">Install Jul-2022</text>
+                      <rect class="area_box", x="190", y="330", height="40", width="50"></rect>
+                    </g>
+                    <div name="tooltip", opacity=0></div>
+                  </svg>
+                  
+              </p>
+            </div> 
+            <div class='column'>
+              <h2>
+                 Cycling Safety Ordinance
+              </h2>
+              <p>
+The Cycling Safety Ordinance (CSO) focuses on a small and specific component of the city's street system. The Cambridge City Council enacted the CSO in 2019 and amended it in 2020. The CSO dictates the installation of 22.6 miles of “quick build” or permanent construction separated bike lanes (shown on right) on the city’s busiest corridors by 2026. The ordinance mandates a strict timeline and a separated bike lane design with provisions to discourage the City Manager from changing the implementation. Despite the word “safety” in the CSO’s title, it does not prescribe any safetyrequirements for infrastructure design nordoes it set safety requirements for bicycles or any other user of the roads. Neither does itprovide provisions to evaluate the safetyimpacts of this ordinance or adjust forconsequences such as the impact onbusinesses, unsafe traffic patterns, or parking supply. 
+              </p>   
+            </div>
+          </div>
+
+        </div class="panel">
+        
+        
+        <div class="panel", id="s2"">
+          <div class="row">
+            <div class='column'>
+              <p>
+                <svg id="viz0", width="500" height="500"></svg>
+              </p>
+            </div> 
+            <div class='column'>
+              <h2>
+                 Cycling Safety Ordinance
+              </h2>
+              <p>
+The Cycling Safety Ordinance (CSO) focuses on a small and specific component of the city's street system. The Cambridge City Council enacted the CSO in 2019 and amended it in 2020. The CSO dictates the installation of 22.6 miles of “quick build” or permanent construction separated bike lanes (shown on right) on the city’s busiest corridors by 2026. The ordinance mandates a strict timeline and a separated bike lane design with provisions to discourage the City Manager from changing the implementation. Despite the word “safety” in the CSO’s title, it does not prescribe any safetyrequirements for infrastructure design nordoes it set safety requirements for bicycles or any other user of the roads. Neither does itprovide provisions to evaluate the safetyimpacts of this ordinance or adjust forconsequences such as the impact onbusinesses, unsafe traffic patterns, or parking supply. 
+              </p>   
+            </div>
+          </div>
+        </div class='panel'>
+        
+        <div class="panel", id="s3">
+          <div class='row'>
+                  <h1> Injuries on New CSO Road Sections</h1>
+          </div class='row'>
+          <div class="row">
+            <div class="column">
+              <h2> Injuries on New CSO Road Sections</h2>
+              <svg id="viz2", width="500" height="500"></svg>
+            </div class='column'>
+            <div class='column'>
+              <div class='anno', id='pan11'>This is the first panel and second pane this could wrap also.</div>
+              <div class='anno', id='pan12'>This is the second paragraph</div>
+            
+            </div class='column'>
+          </div class='row'>
+        </div class='panel'>
+         
+        <div class="panel", id="s4">
+          <div class='row'>
+            <div class='column'>
+               <p>This is the first panel and first pane. This might be longer than the line and need to wrap.</p>
+               <svg id="viz3", width="500" height="500"></svg>
+            </div>
+            <div class='column'>
+              <div class='anno', id='pan21'>This is the first panel and second pane this could wrap also.</div>
+              <div class='anno', id='pan22'>This is the second paragraph</div>
+            </div>
+          </div class='row'>
+        </div class='panel'>
+        
+        <div class="panel", id="s5">
+          <div class='row'>
+              <div class='column'>
+                   <p>This is the 2nd panel and first pane.</p>
+                   <svg id="viz4", width="500" height="500"></svg>
+              </div>
+              <div class='column'>
+                <p>This is the 2nd panel and second pane.</p>
+              </div>
+            </div class='row'>
+          </div class='panel'>
+      </div class='container'>
+
+    
+    <script>
+    
+        function s1_ttipOn(d) {
+          console.log("qqqqqqq")
+          console.log("= ", d)
+          console.log(d3.mouse)
+          tooltip
+              .style("opacity", 1)
+              .style("left", (d3.pageX) + "px")
+              .style("top",  (d3.pageY) + "px")
+              .html("the is it")
+        }
+        
+        function s1_ttipOff() {
+          console.log('qq-out')
+        }
+    
+        var last_num = 10  //last z-index 
+        var last_p_id = 'none'
+        var p_id_list = ["#s0", "#s1", "#s2", "#s3", "#s4", "#s5", "#s6"]
+        // INPUT Page Range Slider output
+        d3.selectAll("input[name='pageno']").on("change", function(d,i){
+          console.log(this.value)
+          p_id = p_id_list[this.value]
+          console.log("p_id ", p_id)
+          // Prepare new page for slide transition
+          if(p_id != last_p_id){
+              last_num = last_num + 1
+              d3.selectAll(p_id)
+                .style("left", 550)
+                .style("opacity", 0)
+                .style("z-index", last_num)
+                .transition()
+                .duration(3000)
+                .style("left", 0)
+                .style("opacity", 1)
+            }
+            last_p_id = p_id
+            console.log("switch " + p_id)
+            switch(p_id){
+              case '#s0':
+                break;
+              case '#s1':
+                //d3.selectAll("#viz2 > *").remove();
+                console.log("IN #s1")
+                plotvizSbS("#viz2", cso_befaft, cso_befaft_col, ann_viz2 )
+                break;
+              case '#s2':
+                console.log("IN #s2")
+                //d3.selectAll("#viz3 > *").remove();
+                plotviz("#viz3", cso_annual, cso_annual_col, ann_viz2a, 12)
+                break;
+              case '#s3':
+                //d3.selectAll("#viz4 > *").remove();
+                plotvizSbS("#viz4", city_annual, city_annual_col, ann_viz2a, 100)
+                //plotviz("#viz4", citywide, ann_viz2a, "Page 3")
+                break;
+              
+            }
+            
+        })
+     
+     
+     staticColor = '#437c90';
+     hoverColor = '#eec42d';
+     tooltip = d3
+        .select('body')
+        .append('div')
+        .attr('class', 'd3-tooltip')
+        .style('position', 'absolute')
+        .style('z-index', '10')
+        .style('visibility', 'hidden')
+        .style('padding', '10px')
+        .style('background', 'rgba(0,0,0,0.6)')
+        .style('border-radius', '4px')
+        .style('color', '#fff')
+        .text('a simple tooltip');
+
+    // Data for plots
+    let cso_befaft_col = ["Area", "Pre-Covid", "2022 CSO installation"]
+    let cso_befaft = [
+      {a:"Mid Mass Ave",  b:5,  c:9},
+      {a:"N Mass Ave",    b:3,  c:12},
+      {a:"Porter Square", b:4,  c:10},
+      {a:"Total",         b:12, c:31}
+    ]
+    
+    let city_befaft_col = ["Area", "Pre-Covid", "2022 CSO installation"]
+    let city_befaft = [
+      {a:"Rest of City", b:50, c:90}
+    ]
+    
+    let cso_annual_col = ["Year", "Bikes", "Autos"]
+    let cso_annual = [
+      {a:2016, injuries:9, b:1, c:8},
+      {a:2017, injuries:15, b:7, c:8},
+      {a:2018, injuries:14, b:8, c:6},
+      {a:2019, injuries:7, b:2, c:5},
+      {a:2020, injuries:8, b:3, c:5},
+      {a:2021, injuries:10, b:7, c:3},
+      {a:2022, injuries:25, b:11, c:14}
+    ];
+
+    let city_annual_col = ["Year", "Bikes", "Autos"]
+    let city_annual = [
+      {a:2016, injuries:227, b:65, c:162},
+      {a:2017, injuries:220, b:79, c:146},
+      {a:2018, injuries:215, b:66, c:149},
+      {a:2019, injuries:225, b:83, c:142},
+      {a:2020, injuries:125, b:34, c:91},
+      {a:2021, injuries:185, b:54, c:131},
+      {a:2022, injuries:265, b:87, c:178}
+    ];
+    
+ 
+    //Checking text setion for <div call="anno">      
+    d3.selectAll(".anno")
+      .on('mouseover', function(){
+        console.log("annotation")
+        console.log(this.id)  
+      })
+
+        
+    // ploting function STACKED
+    function plotviz(vid, vdat, vdat_c, vannotation="", vline=0, vlegend=true,  vtitle="") {
+        var svg = d3.select(vid),
+            margin = {top: 10, bottom: 100, left: 50, right: 100},
+            width = svg.attr("width") - margin.right - margin.left,
+            height = svg.attr("height") - margin.top - margin.bottom;
+    
+        var g = svg.append("g")
+               .attr("transform", "translate(" + 50 + "," + 10 + ")");
+               
+        var xScale = d3.scaleBand().range ([0, width]).padding(0.4),
+            yScale = d3.scaleLinear().range ([height, 0]);
+
+        xScale.domain(vdat.map(function(d) { return d.a; }));
+        yScale.domain([0, d3.max(vdat, function(d) { return d.b + d.c; }) * 1.1]);
+
+        console.log("gogogogo  x:" + xScale(4) + ' y:' + yScale(4))
+        
+        // List of victims = header of the csv files = soil condition here
+        var victims = ["b", "c"] //vdat.columns.slice(1)
+
+         // color palette = one color per victim
+        var color = d3.scaleOrdinal()
+          .domain(victims)
+          .range(['#e41a1c','#377eb8','#4daf4a']);
+
+//-----------
+        //stack the data? --> stack per victim
+        var stackedData = d3.stack()
+          .keys(victims)
+          (vdat)
+        
+        g.selectAll("g")
+          .data(stackedData)
+          .enter().append("g")
+          .attr("fill", function(d) { return color(d.key); })
+          .attr("class", function(d){ return "myRect " + d.key }) //add class to each
+          .selectAll("rect")
+          .data(function(d) { return d; })
+          .enter().append("rect")
+               .on("mouseover", showTooltip)
+               .on("mouseout", hideTooltip)
+               .transition()
+               .ease(d3.easeLinear)
+               .duration(400)
+               .delay(function (d, i) {
+                 return i * 50
+                })
+  
+              .attr("x", function(d) { return xScale(d.data.a); })
+              .attr("y", function(d) { return yScale(d[1]); })
+              .attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
+              .attr("width", xScale.bandwidth())
+              .attr("stroke", "grey")
+    
+        g.append("text")
+         .attr("transform", "translate(50,0)")
+         .attr("x", 50)
+         .attr("y", -20)
+         .attr("font-size", "20px")
+         .attr("text-align","center")
+         .text(vtitle);
+        
+        g.append("g")
+         .attr("class", "axis")
+         .attr("transform", "translate(0," + height + ")")
+         .call(d3.axisBottom(xScale));
+         
+        g.append("g")
+         .attr("class", "axis")
+         .call(d3.axisLeft(yScale)
+         .tickFormat(function(d){
+             return d;
+         }).ticks(4));
+         
+          // Add chart y axis label 
+          g.append('text')
+            .text('Injuries')
+            .attr('transform', 'rotate(-90)')
+            .attr('text-anchor', 'middle')
+            .attr('x', 0 - (height / 2))
+            .attr('y', 0 - (margin.left / 2))
+
+        
+        // HORIZONTAL LINE FOR AVERAGE 
+        if(vline != 0) {
+            g.append("line")
+             .attr("class", "horizontal-line")
+             .attr("x1", xScale(2016))
+             .attr("y1", yScale(vline))
+             .attr("x2", xScale(2022)+30)
+             .attr("y2", yScale(vline));
+            
+            g.append("text")
+             .attr("x", xScale(2022) + 30)
+             .attr("y", yScale(vline))
+             .text("Pre-Covid Ave");
+        }
+
+              
+        // LEGEND 
+        if(vlegend) {
+            var legend = g.selectAll('.legend')
+              .data(color.domain())
+              .enter()
+              .append('g')
+              .attr('class', 'legend')
+      
+            var legendSpacing = 80;
+            
+            legend.append('text')
+              .text(function(d, i) {
+                 return vdat_c[i + 1]})  //d => d)
+              .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${(20)})`)
+            
+            legend.append('rect')
+              .attr('width', legendSpacing/2)
+              .attr('height', 5)
+              .style('fill', color)
+              .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${( 0 )})`)
+        }
+      
+        //mouseover event handler function
+        // Tool tip
+        tipg = svg.append("g")
+          .attr("transform", "translate(" + 50 + "," + 10 + ")")
+    	    .attr("class", "annotation-tip");
+    	    
+    	  function showTooltip(d){
+            // debug infor for creating annotations
+    	     /* console.log("xScale(2016)" + xScale(2016))
+    	      console.log("xScale(2019)" + xScale(2019))
+    	      console.log("xScale(2020)" + xScale(2020))
+    	      console.log("xScale(2021)" + xScale(2021))
+    	      console.log("xScale(2022)" + xScale(2022)) */
+    	      console.log("tooltip" + vid)
+    	      
+
+        	  annotationtip = d3.annotation()
+            .type(d3.annotationLabel)
+            .annotations([d].map(function(d){
+              return {
+                y:yScale(d[1]),
+                x:xScale(d.data.a),
+                dx: 0,
+                dy: 0,
+                note: {
+                   title: ["Injuries "+  [d[0]-d[1]]],
+                   wrap:200,
+                   bgPadding: {top:4,right:3,left:3,bottom:-5},
+                },
+                disable:["connector","subject"]
+              };
+            })) 
+            
+            tipg.call(annotationtip);
+    	   }   
+    	    
+        //mouseout event handler function
+        function hideTooltip(){
+            tipg.selectAll("g")
+              .remove()
+        }
+        ///### End tooltip
+        
+      // ANNOTATIONS
+     
+      function showAnnotation() {
+        if (vannotation.length > 0) {
+          console.log("annotation found", vannotation.length)
+          ann1 = g.append("g")
+              .attr("transform", "translate(" + 50 + "," + 10 + ")")
+  
+          const makeAnnotations = d3.annotation()
+            .annotations(vannotation)
+      
+          ann1.call(makeAnnotations)
+        } 
+        else {
+          console.log("no annotation", vannotation.length)
+        }
+      }
+      
+      function removeAnnotation() {
+        ann1.selectAll("g").remove()
+      }
+        
+    } //end plotviz function
+    
+    
+    function plotvizSbS(vid, vdat, vdat_c, vannotation="", vline=0, vlegend=true,  vtitle="") {
+        
+        var svg = d3.select(vid),
+            margin = {top: 10, bottom: 100, left: 50, right: 100},
+            width = svg.attr("width") - margin.right - margin.left,
+            height = svg.attr("height") - margin.top - margin.bottom;
+            
+        var g = svg.append("g")
+            .attr("transform", "translate(" + 50 + "," + 10 + ")");
+                   
+        var xScale = d3.scaleBand().range ([0, width]),    //-----.padding(0.4),
+            yScale = d3.scaleLinear().range ([height, 0]);
+    
+        xScale.domain(vdat.map(function(d) { return d.a; }));
+        yScale.domain([0, d3.max(vdat, function(d) { return d.c; }) * 1.1]);   //----d.c insteed of d.injuries
+    
+        // List of victims = header of the csv files = soil condition here
+        var victims = ["b", "c"] //vdat.columns.slice(1)
+    
+        var color = d3.scaleOrdinal()
+          .domain(victims)
+           .range(['#e41a1c','#377eb8','#4daf4a']);
+    
+    
+        //-------------
+    
+        // Create new bar groups appending data and setting starting y index position (we use enter() join to create new 'g' for data point if non-existent)
+        var barWidth = (width / vdat.length) / 2; // bar height equidistant across graph height
+        
+        var bar = g.selectAll('.bar1')
+          .data(vdat, d => d.b)
+          .enter().append('g')
+          .attr('transform', (d, i) => `translate(${(i * 2) * barWidth + 6}, 0)`)
+          .attr('class', 'bar1')
+        
+        var bar2 = g.selectAll('.bar2')
+          .data(vdat, d => d.c)
+          .enter().append('g')
+          .attr('transform', (d, i) => `translate(${barWidth + (i * 2) * barWidth + 3},0)`)
+          .attr('class','bar2');
+        
+        
+        // Append a graph to each bar 'g' setting the width and height
+        bar.append('rect')
+          .on("mouseover", function (d, i) {
+              tooltip
+                .html(
+                  `<div>Country: ${d.country}</div><div>Value: ${d.value}</div>`
+                )
+                .style('visibility', 'visible');
+              d3.select(this).transition().attr('fill', hoverColor);
+          })
+          .on('mousemove', function () {
+              tooltip
+                .style('top', d3.event.pageY - 10 + 'px')
+                .style('left', d3.event.pageX + 10 + 'px');
+          })
+          .on('mouseout', function () {
+              tooltip.html(``).style('visibility', 'hidden');
+              d3.select(this).transition().attr('fill', staticColor);
+          })          .attr('y',  d => yScale(d.b))
+          .attr('width', barWidth)
+          .attr('height', d => height - yScale(d.b))
+          .style('fill', color('b'));
+        
+        bar2.append('rect')
+          .on("mouseover", function (d, i) {
+              tooltip
+                .html(
+                  `<div>Country: ${d.country}</div><div>Value: ${d.value}</div>`
+                )
+                .style('visibility', 'visible');
+              d3.select(this).transition().attr('fill', hoverColor);
+          })
+          .on('mousemove', function () {
+              tooltip
+                .style('top', d3.event.pageY - 10 + 'px')
+                .style('left', d3.event.pageX + 10 + 'px');
+          })
+          .on('mouseout', function () {
+              tooltip.html(``).style('visibility', 'hidden');
+              d3.select(this).transition().attr('fill', staticColor);
+          })
+          .attr('y', d => yScale(d.c))
+          .attr('width', barWidth)
+          .attr('height', d=> height - yScale(d.c))
+          .style('fill', color('c'));
+        
+        // Add text to each bar graph
+        // text-anchor middle is the svg text equivalent to transform: translate(-50%, -50%) for regular CSS divs
+        bar.append('text')
+          .text(d => d.b)
+          .attr('text-anchor', 'middle')
+          .attr('x', barWidth / 2)
+          .attr('y', d => yScale(d.b) - 5);
+        
+        bar2.append('text')
+          .text(d => d.c)
+          .attr('text-anchor', 'middle')
+          .attr('transform', d => `translate(${barWidth/2},${yScale(d.c) -5})`)
+        
+        
+        // Add X axis at bottom of chart (we must do this at bottom after data has been appended to svg)
+            
+        g.append("text")
+         .attr("transform", "translate(50,0)")
+         .attr("x", 50)
+         .attr("y", -20)
+         .attr("font-size", "24px")
+         .text(vtitle);
+        
+        g.append("g")
+         .attr("class", "axis")
+         .attr("transform", "translate(0," + height + ")")
+         .call(d3.axisBottom(xScale));
+         
+        g.append("g")
+         .attr("class", "axis")
+         .call(d3.axisLeft(yScale)
+         .tickFormat(function(d){
+             return d;
+         }).ticks(4));
+         
+         
+          // Add chart y axis label 
+          svg.append('text')
+            .text('Injuries')
+            .attr('transform', 'rotate(-90)')
+            .attr('text-anchor', 'middle')
+            .attr('x', 0 - (height / 2))
+            .attr('y', 0 - (margin.left / 2))
+         
+          
+          // HORIZONTAL LINE FOR AVERAGE 
+          if(vline != 0) {
+            console.log("VLINE++++++" + vline)
+            g.append("line")
+             .attr("class", "horizontal-line")
+             .attr("x1", xScale(2016))
+             .attr("y1", yScale(vline))
+             .attr("x2", xScale(2022)+30)
+             .attr("y2", yScale(vline));
+            
+            g.append("text")
+             .attr("x", xScale(2022) + 30)
+             .attr("y", yScale(vline))
+             .text("Pre-Covid Ave");
+          }
+
+          
+            // LEGEND   
+            if(vlegend) {
+                var legend = g.selectAll('.legend')
+                    .data(color.domain())
+                    .enter()
+                    .append('g')
+                    .attr('class', 'legend')
+              
+                var legendSpacing = 80;
+                
+                legend.append('text')
+                  .text(function(d, i) {
+                     return vdat_c[i + 1]})  //d => d)
+                  .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${(20)})`)
+                
+                legend.append('rect')
+                  .attr('width', legendSpacing/2)
+                  .attr('height', 5)
+                  .style('fill', color)
+                  .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${( 0 )})`)
+            }
+      
+          
+          
+          // TOOLTIP2 for bar2
+          tipg2 = svg.append("g")
+            .attr("transform", "translate(" + 50 + "," + 10 + ")")
+      	    .attr("class", "annotation-tip");
+      	    
+      	  function showTooltip2(d){
+      	      console.log("show tooltip2")
+          	  annotationtip = d3.annotation()
+              .type(d3.annotationLabel)
+              .annotations([d].map(function(d){
+                return {
+                  y:yScale(d.c),
+                  x:xScale(d.a) + barWidth,
+                  dx: 0,
+                  note: {
+                     title: ["c:"+  d.c],
+                     wrap:200,
+                     bgPadding: {top:4,right:3,left:3,bottom:-5},
+                  },
+                  disable:["connector","subject"]
+                };
+              })) 
+              
+              tipg2.call(annotationtip);
+      	   }   
+      	    
+          //mouseout event handler function
+          function hideTooltip2(){
+              tipg2.selectAll("g")
+                .remove()
+          }
+        ///### End tooltip
+        
+      // ANNOTATIONS
+       
+   /*   function showAnnotation() { */
+        if (vannotation.length > 0) {
+          console.log("annotation found", vannotation.length)
+          ann1 = g.append("g")
+              .attr("transform", "translate(" + 50 + "," + 10 + ")")
+  
+          const makeAnnotations = d3.annotation()
+            .annotations(vannotation)
+      
+          ann1.call(makeAnnotations)
+        } 
+        else {
+          console.log("no annotation", vannotation.length)
+        }
+  /*    } */
+      
+      function removeAnnotation() {
+        ann1.selectAll("g").remove()
+      }
+ 
+ 
+    }  //## END plotvizSbS
+
+
+   const ann_viz2 = 
+       [
+        {
+          id: "a_viz2",
+          type: d3.annotationXYThreshold,
+          note:{
+            label: "200% More Injuries",
+          },
+          color: ["purple"],
+          x: 255,  //xScale(2022), 
+          y:  120,
+          dx: -40,
+          dy: -10,
+          subject:{
+             y1:30,
+             y2:210,
+          }
+        }
+          
+      ]
+   
+
+
+
+   const ann_viz2a = 
+       [
+         /*{
+            note: {
+              label: "Here is the annotation label",
+              title: "Annotation title"
+            },
+            connector: {
+              end: "dot",        // Can be none, or arrow or dot
+              type: "line",      // ?? don't know what it does
+              lineType : "vertical",    // ?? don't know what it does
+              endScale: 4     // dot size
+            },
+            color: ["black"],
+            x: xScale(2020)+10,
+            y: 160,
+            dy: -70,
+            dx: width  - xScale(2020)
+          },*/
+        {
+          id: "viz2_1",
+          type: d3.annotationXYThreshold,
+          note:{
+            title: "158% More Injuries",
+          },
+          color: ["purple"],
+          x: 346,  //xScale(2022), 
+          y: 0,
+          dx: 10,
+          dy: 10,
+          subject:{
+             y1:-100,
+             y2: 100,
+          }
+        } /*,
+          {
+            id:"viz2_2",
+            type:d3.annotationXYThreshold,
+            note: {
+          	  label: "2016-2018 Average",
+            },
+            disable: 'connector',
+            color: ["purple"],
+            x: 23,   //xScale(2016),
+            y: 100,
+            dy:-10,
+            dx:10,
+            subject: {
+        	    x1: 23 - 75, //xScale(2016)-75,
+            	x2: 346,    //xScale(2022)
+            } 
+        }*/
+          
+      ]
+   
+      // S1 Map2022 Features
+     injury_percent = [
+        {area:"N Mass", injuries: 300},
+        {area:"Porter SQ", injuries: 150},
+        {area:"Mid Mass", injuries: 80},
+        {area:"Citywide", injuries: 1}]
+        
+
+      
+    function map2022_plot(viz, vdat) {
+        var svg = d3.select(viz),
+            w = svg.attr('width'),
+            h = svg.attr("height");
+            
+        console.log("---", w, "  ", h)
+        svg.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", w)
+            .attr("height", h)
+            .attr("fill", "LightGray");
+            
+        var margin = {top: 35, bottom: 25, left: 0, right: 0},
+            width = w - 10, //margin.right - margin.left,
+            height = h - margin.top - margin.bottom;
+        
+        console.log("width: " + width + "  height: " + height)
+        
+       var g = svg.append("g")
+               .attr("transform", "translate(" + 0 + "," + 25 + ")");
+         
+       var xScale = d3.scaleBand().range ([0, width]).padding(0.4),
+           yScale = d3.scaleLinear().range ([height, 0]);
+      
+        yScale.domain([0, d3.max(vdat, function(d) { return d.injuries * 1.2; }) ]);
+        xScale.domain(vdat.map(function(d) { return d.area; }));
+        
+        var barWidth = (width / vdat.length) / 2; // bar height equidistant across graph height
+  
+        g.append("g")
+         .attr("class", "axis")
+         .style("font-size", 9)
+         .attr("transform", "translate(0," + height + ")")
+         .call(d3.axisBottom(xScale));
+        
+         let bars = g.selectAll('.area_bar')
+            .data(vdat)
+            .enter()
+            .append("g");
+ 
+        bars.append("text")
+          .attr("x", 2)
+          .attr("y", -10)
+          .style("font-size", "18px")
+          .style("color", 'red')
+          .text("Injury Increases after Installation");
+         
+           
+        bars.append('rect')
+            .attr('class', 'area_bar')
+            .style('fill', 'blue')
+            .attr('x', function(d) {return xScale(d.area); })
+            .attr('y', function(d) {return yScale(d.injuries); })
+            .attr('width', xScale.bandwidth())
+            .attr('height', function(d) {return height - yScale(d.injuries); } );
+        
+        bars.append('text')
+          .attr('class', 'area_text')
+          .style('color', 'red')
+          .attr('text-anchor', 'middle')
+          .attr("x", function(d) {return xScale(d.area) + barWidth / 2;})
+          .attr("y", function(d) {return yScale(d.injuries) - 2 } )
+          .text(function(d) {return d.injuries + "%"});
+        
+        
+
+      }
+      
+      map2022_plot("#viz1_a",injury_percent) 
+     
+
+
+          
+    </script>
+      
+  </body>
+  
+  
 </html>
