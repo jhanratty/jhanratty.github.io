@@ -9,8 +9,14 @@
         }
         .axis{
             font-family: "Open Sans",Helvetica,Arial,sans-serif;
-            font-size: 14px;
+            font-size: 9px;
         }
+        
+        .axis1{
+            font-family: "Open Sans",Helvetica,Arial,sans-serif;
+            font-size: 9px;
+        }
+       
         
         text{
             font-family: "Open Sans",Helvetica,Arial,sans-serif;
@@ -26,13 +32,23 @@
 
         .row {
             display: flex;
-          }
+        }
           
         .column {
             flex: 50%;
             padding:12;
         }
         
+        flex-row {
+         display:flex;
+         
+        }
+       
+       flex-col {
+         flex: 50%;
+         padding:12;
+       }
+
         .container {
           position: absolute;
           top:100px;
@@ -63,7 +79,7 @@
             
         .annotate{
           font-family: "Open Sans",Helvetica,Arial,sans-serif;
-          font-size: 20;
+          font-size: 14px;
           word-wrap: break-word;
         }
         
@@ -112,6 +128,11 @@
         .annotation-tip .annotation-note-bg {
           fill:white;
           fill-opacity:0.9;
+        }
+        
+        .annotation-tip .annotation text {
+          fill:black;
+          font-size:16;
         }
       
         #viz0 {
@@ -162,7 +183,7 @@
   </head>
   <body
     <p>
-      <button type="button" onclick="showAnnotation">Test</button>
+      <button type="button" onclick="tryThis()">Test</button>
 
     </p>
     <p>
@@ -173,133 +194,184 @@
     
     <div class=container>
         <div class="panel", id="s0", style="z-index:3;">
-          <div class='row'>
+          <flex-row>
             <h1> Cambrige Cycling Safety Ordinance - Are we safer?</h1>
-          </div class='row'>
-          <div class="row">
-            <div class="column">
-              <h3>CSO Specifies 22.6 Miles of Protecte Bike Lanes</h3>
+          </flex-row>
+          <flex-row>
+            <flex-col>
+              <h3>Buiding 22.6 Miles of Protected Bike Lanes by 2026</h3>
               <svg id="viz0", width="500" height="500"></svg>
-            </div class='column'>
+            </flex-col>
             
-            <div class='column'>
-              <div class='row'>
-                <h1> </h1>
-              </div class='row'>
-              <div class='row'>
-                <h1> </h1>
-              </div class='row'>
-              <div class='row'>
-          
-The Cycling Safety Ordinance (CSO) focuses on a small and specific component of the city's street system. The Cambridge City Council enacted the CSO in 2019 and amended it in 2020. The CSO dictates the installation of 22.6 miles of “quick build” or permanent construction separated bike lanes (shown on right) on the city’s busiest corridors by 2026. The ordinance mandates a strict timeline and a separated bike lane design with provisions to discourage the City Manager from changing the implementation. Despite the word “safety” in the CSO’s title, it does not prescribe any safetyrequirements for infrastructure design nordoes it set safety requirements for bicycles or any other user of the roads. Neither does itprovide provisions to evaluate the safetyimpacts of this ordinance or adjust forconsequences such as the impact onbusinesses, unsafe traffic patterns, or parking supply. 
-              </div class='row'>
-            </div class='column'>
-          </div class='row'>
+            <flex-col>
+<h2>   </h1>
+<p>
+The Cambridge Cycling Safety Ordinance (CSO) just completed its third year of implementation. The City Council enacted the CSO in 2019 and amended it in 2020. The ordinance dictates the installation of 22.6 miles of “quick build” or permanent construction separated bike lanes (shown on left) on the city’s busiest corridors by 2026. The ordinance mandates a strict timeline and a separated bike lane design with provisions to discourage the City Manager from changing or delaying the implementation. Despite the word “safety” in the CSO’s title, it does not prescribe any safety requirements for infrastructure design nor does it set safety requirements for cyclists or any other user of the roads. In addition, it does not provide provisions to adjust for unforeseen consequences such as the impact on businesses, unsafe traffic patterns, or parking supply.
+</p>
+
+            </flex-col>
+          </flex-row>
         </div class='panel'>
-
-
+        
         
         <div class="panel", id="s1">
-          <div class="row">
-            <div class='column'>
+          <flex-row>
+            <h1>CSO Installations in 2021-2022</h1>
+          </flex-row>
+ 
+          <flex-row>
+            <flex-col>
               <p>
                   <svg id="viz1", width="500", height="500">
-                    <g id="s1_chart", opacity=1>
-                      <svg id="viz1_a", x="190", y="170", width="300", height="150" ></svg>
+                    <g id="s1_chart">
+                       <svg id="viz1_a", x="100", y="170", width="300", height="150", opacity="0"" ></svg>
                     </g>
                     <g id="s1_boxes", opacity=1>
                       <text class="area_text", x="57", y="10">North Mass Ave</text>
                       <text class="area_text", style="font-size:80%;", x="57", y="26">Install Sep-2021</text>
-                      <rect class="area_box", id=s1_nma, onmouseover="s1_ttipOn('sl_m')", onmouseout="s1_ttipOff()", x="5", y="0", height="40", width="50"></rect>
+                      <rect class="area_box", id=s1_nma, onmouseover="s1_ttipOn('sl_m')", 
+                            onmouseout="s1_ttipOff()", x="5", y="0", height="40", width="50"></rect>
                       
                       <text class="area_text", x="162", y="125">Porter Square</text>
                       <text class="area_text", style="font-size:80%;", x="162", y="139">Install Jul-2022</text>
-                      <rect class="area_box", x="120", y="115", height="32", width="40"></rect>
+                      <rect class="area_box",  x="120", y="115", height="32", width="40"></rect>
                       <text class="area_text", x="242", y="340">Mid Mass Ave</text>
-                      <text class="area_text", style="font-size:80%;stroke:purple;fill:purple", x="242", y="353">Install Jul-2022</text>
+                      <text class="area_text", style="font-size:80%;stroke:purple;fill:purple", 
+                                              x="242", y="353">Install Jul-2022</text>
                       <rect class="area_box", x="190", y="330", height="40", width="50"></rect>
                     </g>
                     <div name="tooltip", opacity=0></div>
                   </svg>
                   
               </p>
-            </div> 
-            <div class='column'>
+            </flex-col> 
+            <flex-col>
               <h2>
-                 Cycling Safety Ordinance
+                 The Initial Road Sections
               </h2>
-              <p>
-The Cycling Safety Ordinance (CSO) focuses on a small and specific component of the city's street system. The Cambridge City Council enacted the CSO in 2019 and amended it in 2020. The CSO dictates the installation of 22.6 miles of “quick build” or permanent construction separated bike lanes (shown on right) on the city’s busiest corridors by 2026. The ordinance mandates a strict timeline and a separated bike lane design with provisions to discourage the City Manager from changing the implementation. Despite the word “safety” in the CSO’s title, it does not prescribe any safetyrequirements for infrastructure design nordoes it set safety requirements for bicycles or any other user of the roads. Neither does itprovide provisions to evaluate the safetyimpacts of this ordinance or adjust forconsequences such as the impact onbusinesses, unsafe traffic patterns, or parking supply. 
-              </p>   
-            </div>
-          </div>
+<p>
+The first three CS0 road sections were installed at the end of 2021 and beginning of 2022 on North Mass Ave, Port Square and Mid Mass Ave. This study compares injury rates on these road segments in 2022 with new CSO separated bike lanes with (1) their pre-COVID levels in 2016-2019, and (2) against the rest of Cambridge roads during the same periods. 
+</p>
+<p>
+The chart on the left summarizes the study's results showing that road user injuries skyrocketed after installation of separated bike lanes by 158% over pre-COVID rates. This increase occurred while citywide roads saw a slight a less than 1% increase from the pre-COVID level. In 2022, on the combined 1.3 miles of road where separated bike lanes were installed, 31 road users were injured, including those transported to a hospital, compared to the pre- COVID level of 12 injuries, an increase of 19 injuries for 2022.
+</p>
+<p>
+
+</p>
+            </flex-col>
+          </flex-row>
 
         </div class="panel">
         
         
-        <div class="panel", id="s2"">
-          <div class="row">
-            <div class='column'>
+        <div class="panel", id="s2">
+          <flex-row>
+            <h1>Injuries on New Road Sections After CSO Installation </h1>
+          </flex-row>
+          <flex-row>
+            <flex-col>
               <p>
-                <svg id="viz0", width="500" height="500"></svg>
+                <svg id="viz2", width="500" height="500"></svg>
               </p>
-            </div> 
-            <div class='column'>
+            </flex-col> 
+            <flex-col>
               <h2>
-                 Cycling Safety Ordinance
+                 The Initial Results
               </h2>
-              <p>
-The Cycling Safety Ordinance (CSO) focuses on a small and specific component of the city's street system. The Cambridge City Council enacted the CSO in 2019 and amended it in 2020. The CSO dictates the installation of 22.6 miles of “quick build” or permanent construction separated bike lanes (shown on right) on the city’s busiest corridors by 2026. The ordinance mandates a strict timeline and a separated bike lane design with provisions to discourage the City Manager from changing the implementation. Despite the word “safety” in the CSO’s title, it does not prescribe any safetyrequirements for infrastructure design nordoes it set safety requirements for bicycles or any other user of the roads. Neither does itprovide provisions to evaluate the safetyimpacts of this ordinance or adjust forconsequences such as the impact onbusinesses, unsafe traffic patterns, or parking supply. 
-              </p>   
-            </div>
-          </div>
+<p>
+The analysis shows that cyclist and motorist injuries increased substantially on road segments after CSO separated bike lane installations. Although miles apart and having different traffic patterns, all three sections showed considerable injury increases. Mid Mass Ave and North Mass Ave installations occurred late in 2021, so users had time to ‘get used to’ the new configurations. Porter Square was installed in Mid-2022, so the increase represents only a partial year of bike lanes. The chart on the left shows in 2022 that 13 more cyclists were injured in 2022 compared to the pre-COVID numbers. One could extrapolate that 226 more cyclist will be injured annually after installing the entire 22.6 miles of the CSO-mandated bike lanes.
+</p>   
+            </flex-col>
+          </flex-row>
         </div class='panel'>
         
         <div class="panel", id="s3">
-          <div class='row'>
-                  <h1> Injuries on New CSO Road Sections</h1>
-          </div class='row'>
-          <div class="row">
-            <div class="column">
-              <h2> Injuries on New CSO Road Sections</h2>
-              <svg id="viz2", width="500" height="500"></svg>
-            </div class='column'>
-            <div class='column'>
-              <div class='anno', id='pan11'>This is the first panel and second pane this could wrap also.</div>
-              <div class='anno', id='pan12'>This is the second paragraph</div>
-            
-            </div class='column'>
-          </div class='row'>
+          <flex-row>
+                  <h1> Cyclist vs Motorist Injuries</h1>
+          </flex-row>
+          <flex-row>
+            <flex-col>
+              <h2> New CSO Road Sections</h2>
+              <svg id="viz3", width="500" height="500"></svg>
+            </flex-col>
+            <flex-col>
+<h2>Increased Injuries</h2>
+<p>
+Cyclist and motorist injuries both increased to historic levels after CSO bike lane installations. The chart on the left shows the aggregate results for the three initial installations on North Mass Ave, Porter Square, and Mid Mass Ave. Mony other users types (e.g. eBikes, scooters, seniors) also share the road and deserve analysis but data is scant.
+</p>
+<p>
+Motorist injuries might have increased because the new road configurations are confusing and weave unpredictably.  In addition, bus lanes were also installed that remove travel lanes and access to the side of the road. Adjustments to the traffic patterns deserve study.
+</p>
+<p>
+Cyclist injuries might occurred predominately at intersections and driveway where riders must exit the protected lanes. Cambridge is one of the densest cities in the US, so these occur every 100 ft.  In addition, the ordinance specifies infrastructure but neglect to address other components of a typical safety program, e.g., training, awareness, registration and enforcement. 
+</p>
+            </flex-col>
+          </flex-row>
         </div class='panel'>
          
         <div class="panel", id="s4">
-          <div class='row'>
-            <div class='column'>
+          <flex-row>
+                  <h1>More Research</h1>
+          </flex-row>
+
+          <flex-row>
+            <flex-col>
                <p>This is the first panel and first pane. This might be longer than the line and need to wrap.</p>
-               <svg id="viz3", width="500" height="500"></svg>
-            </div>
-            <div class='column'>
+               <svg id="viz4", width="500" height="500"></svg>
+            </flex-col>
+            <flex-col>
               <div class='anno', id='pan21'>This is the first panel and second pane this could wrap also.</div>
               <div class='anno', id='pan22'>This is the second paragraph</div>
-            </div>
-          </div class='row'>
+            </flex-col>
+          </flex-row>
+          <flex-row>
+              <flex-col>
+                <p> another chart</p>
+              </flex-col>
+              <flex-col>
+                <p> chart 4</p>
+              </flex-col>
+            </flex-row>
         </div class='panel'>
         
         <div class="panel", id="s5">
-          <div class='row'>
-              <div class='column'>
+          <flex-row>
+              <flex-col>
                    <p>This is the 2nd panel and first pane.</p>
-                   <svg id="viz4", width="500" height="500"></svg>
-              </div>
-              <div class='column'>
+                   <svg id="viz5", width="500" height="500"></svg>
+              </flex-col>
+              <flex-col>
                 <p>This is the 2nd panel and second pane.</p>
-              </div>
-            </div class='row'>
+              </flex-col>
+            </flex-row>
           </div class='panel'>
       </div class='container'>
 
     
     <script>
+        function tryThis() {
+          console.log("tryThis");
+          d3.select("#viz2").selectAll("#a_viz2")
+                .remove()
+        }
+     
+        let injury_percent = [
+          {area:"N Mass", injuries: 300},
+          {area:"Porter SQ", injuries: 150},
+          {area:"Mid Mass", injuries: 80},
+          {area:"Citywide", injuries: 1}]
+ 
+        map2022_plot("#viz1_a",injury_percent) 
+        
+        let cso_befaft_col = ["Area", "Pre-Covid", "2022 CSO installation"]
+        let cso_befaft = [
+          {a:"Mid Mass Ave",  b:5,  c:9},
+          {a:"N Mass Ave",    b:3,  c:12},
+          {a:"Porter Square", b:4,  c:10},
+          {a:"Total",         b:12, c:31}
+        ]
+
+
     
         function s1_ttipOn(d) {
           console.log("qqqqqqq")
@@ -315,12 +387,18 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
         function s1_ttipOff() {
           console.log('qq-out')
         }
-    
+        
+        // INPUT PAGE SLIDER
         var last_num = 10  //last z-index 
         var last_p_id = 'none'
         var p_id_list = ["#s0", "#s1", "#s2", "#s3", "#s4", "#s5", "#s6"]
-        // INPUT Page Range Slider output
         d3.selectAll("input[name='pageno']").on("change", function(d,i){
+          // Reset charts
+          console.log("hide viz1_a")
+          d3.select("#viz1_a")
+            .attr('opacity', 0)
+            .style('x', "500");
+
           console.log(this.value)
           p_id = p_id_list[this.value]
           console.log("p_id ", p_id)
@@ -332,7 +410,7 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
                 .style("opacity", 0)
                 .style("z-index", last_num)
                 .transition()
-                .duration(3000)
+                .duration(2000)
                 .style("left", 0)
                 .style("opacity", 1)
             }
@@ -342,17 +420,24 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
               case '#s0':
                 break;
               case '#s1':
-                //d3.selectAll("#viz2 > *").remove();
                 console.log("IN #s1")
-                plotvizSbS("#viz2", cso_befaft, cso_befaft_col, ann_viz2 )
-                break;
+                console.log("#viz1_a transition");
+                d3.select("#viz1_a")
+                  .transition()
+                  .duration(10000)
+                  .style('x', "100")
+                  .attr('opacity', "1");
+                
               case '#s2':
-                console.log("IN #s2")
-                //d3.selectAll("#viz3 > *").remove();
-                plotviz("#viz3", cso_annual, cso_annual_col, ann_viz2a, 12)
+                console.log("IN #s2");
+                plotvizSbS("#viz2", cso_befaft, cso_befaft_col, ann_viz2 );
+ 
                 break;
               case '#s3':
-                //d3.selectAll("#viz4 > *").remove();
+                console.log("IN #s3")
+                plotviz("#viz3", cso_annual, cso_annual_col, ann_viz2a, 10)
+                break;
+              case '#s3':
                 plotvizSbS("#viz4", city_annual, city_annual_col, ann_viz2a, 100)
                 //plotviz("#viz4", citywide, ann_viz2a, "Page 3")
                 break;
@@ -378,13 +463,6 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
         .text('a simple tooltip');
 
     // Data for plots
-    let cso_befaft_col = ["Area", "Pre-Covid", "2022 CSO installation"]
-    let cso_befaft = [
-      {a:"Mid Mass Ave",  b:5,  c:9},
-      {a:"N Mass Ave",    b:3,  c:12},
-      {a:"Porter Square", b:4,  c:10},
-      {a:"Total",         b:12, c:31}
-    ]
     
     let city_befaft_col = ["Area", "Pre-Covid", "2022 CSO installation"]
     let city_befaft = [
@@ -393,13 +471,13 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
     
     let cso_annual_col = ["Year", "Bikes", "Autos"]
     let cso_annual = [
-      {a:2016, injuries:9, b:1, c:8},
-      {a:2017, injuries:15, b:7, c:8},
-      {a:2018, injuries:14, b:8, c:6},
-      {a:2019, injuries:7, b:2, c:5},
-      {a:2020, injuries:8, b:3, c:5},
-      {a:2021, injuries:10, b:7, c:3},
-      {a:2022, injuries:25, b:11, c:14}
+      {a:2016, injuries:8, b:7, c:1},
+      {a:2017, injuries:11, b:6, c:5},
+      {a:2018, injuries:11, b:4, c:7},
+      {a:2019, injuries:10, b:5, c:5},
+      {a:2020, injuries:8, b:6, c:2},
+      {a:2021, injuries:13, b:4, c:9},
+      {a:2022, injuries:31, b:15, c:16}
     ];
 
     let city_annual_col = ["Year", "Bikes", "Autos"]
@@ -656,45 +734,16 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
         
         // Append a graph to each bar 'g' setting the width and height
         bar.append('rect')
-          .on("mouseover", function (d, i) {
-              tooltip
-                .html(
-                  `<div>Country: ${d.country}</div><div>Value: ${d.value}</div>`
-                )
-                .style('visibility', 'visible');
-              d3.select(this).transition().attr('fill', hoverColor);
-          })
-          .on('mousemove', function () {
-              tooltip
-                .style('top', d3.event.pageY - 10 + 'px')
-                .style('left', d3.event.pageX + 10 + 'px');
-          })
-          .on('mouseout', function () {
-              tooltip.html(``).style('visibility', 'hidden');
-              d3.select(this).transition().attr('fill', staticColor);
-          })          .attr('y',  d => yScale(d.b))
+          .on("mouseover", showTooltip)
+          .on("mouseout", hideTooltip)
+          .attr('y',  d => yScale(d.b))
           .attr('width', barWidth)
           .attr('height', d => height - yScale(d.b))
           .style('fill', color('b'));
         
         bar2.append('rect')
-          .on("mouseover", function (d, i) {
-              tooltip
-                .html(
-                  `<div>Country: ${d.country}</div><div>Value: ${d.value}</div>`
-                )
-                .style('visibility', 'visible');
-              d3.select(this).transition().attr('fill', hoverColor);
-          })
-          .on('mousemove', function () {
-              tooltip
-                .style('top', d3.event.pageY - 10 + 'px')
-                .style('left', d3.event.pageX + 10 + 'px');
-          })
-          .on('mouseout', function () {
-              tooltip.html(``).style('visibility', 'hidden');
-              d3.select(this).transition().attr('fill', staticColor);
-          })
+          .on("mouseover", showTooltip2)
+          .on("mouseout", hideTooltip2)
           .attr('y', d => yScale(d.c))
           .attr('width', barWidth)
           .attr('height', d=> height - yScale(d.c))
@@ -762,30 +811,59 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
           }
 
           
-            // LEGEND   
-            if(vlegend) {
-                var legend = g.selectAll('.legend')
-                    .data(color.domain())
-                    .enter()
-                    .append('g')
-                    .attr('class', 'legend')
+          if(vlegend) {
+              var legend = g.selectAll('.legend')
+                  .data(color.domain())
+                  .enter()
+                  .append('g')
+                  .attr('class', 'legend')
+            
+              var legendSpacing = 80;
               
-                var legendSpacing = 80;
-                
-                legend.append('text')
-                  .text(function(d, i) {
-                     return vdat_c[i + 1]})  //d => d)
-                  .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${(20)})`)
-                
-                legend.append('rect')
-                  .attr('width', legendSpacing/2)
-                  .attr('height', 5)
-                  .style('fill', color)
-                  .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${( 0 )})`)
-            }
+              legend.append('text')
+                .text(function(d, i) {
+                   return vdat_c[i + 1]})  //d => d)
+                .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${(20)})`)
+              
+              legend.append('rect')
+                .attr('width', legendSpacing/2)
+                .attr('height', 5)
+                .style('fill', color)
+                .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${( 0 )})`)
+          }
       
-          
-          
+          // TOOLTIPS
+          //mouseover event handler function
+          tipg = svg.append("g")
+            .attr("transform", "translate(" + 50 + "," + 10 + ")")
+      	    .attr("class", "annotation-tip");
+      	    
+      	  function showTooltip(d){
+      	    console.log("show tooltip")
+          	  annotationtip = d3.annotation()
+              .type(d3.annotationLabel)
+              .annotations([d].map(function(d){
+                return {
+                  y:yScale(d.b),
+                  x:xScale(d.a),
+                  dx: 0,
+                  note: {
+                     title: ["b:"+  d.b],
+                     wrap:200,
+                     bgPadding: {top:4,right:3,left:3,bottom:-5},
+                  },
+                  disable:["connector","subject"]
+                };
+              })) 
+              
+              tipg.call(annotationtip);
+      	   }   
+      	    
+          //mouseout event handler function
+          function hideTooltip(){
+              tipg.selectAll("g")
+                .remove()
+          }
           // TOOLTIP2 for bar2
           tipg2 = svg.append("g")
             .attr("transform", "translate(" + 50 + "," + 10 + ")")
@@ -851,7 +929,7 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
           id: "a_viz2",
           type: d3.annotationXYThreshold,
           note:{
-            label: "200% More Injuries",
+            label: "158% More Injuries",
           },
           color: ["purple"],
           x: 255,  //xScale(2022), 
@@ -925,14 +1003,7 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
       ]
    
       // S1 Map2022 Features
-     injury_percent = [
-        {area:"N Mass", injuries: 300},
-        {area:"Porter SQ", injuries: 150},
-        {area:"Mid Mass", injuries: 80},
-        {area:"Citywide", injuries: 1}]
-        
 
-      
     function map2022_plot(viz, vdat) {
         var svg = d3.select(viz),
             w = svg.attr('width'),
@@ -944,6 +1015,7 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
             .attr("y", 0)
             .attr("width", w)
             .attr("height", h)
+            .attr("opacity", .4)
             .attr("fill", "LightGray");
             
         var margin = {top: 35, bottom: 25, left: 0, right: 0},
@@ -963,11 +1035,13 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
         
         var barWidth = (width / vdat.length) / 2; // bar height equidistant across graph height
   
-        g.append("g")
-         .attr("class", "axis")
-         .style("font-size", 9)
+        const baxis = g.append("g")
+         .attr("class", "axis1")
          .attr("transform", "translate(0," + height + ")")
          .call(d3.axisBottom(xScale));
+         
+         baxis
+          .style("font-size", "9px")
         
          let bars = g.selectAll('.area_bar')
             .data(vdat)
@@ -975,10 +1049,11 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
             .append("g");
  
         bars.append("text")
-          .attr("x", 2)
+          .attr("x", 10)
           .attr("y", -10)
           .style("font-size", "18px")
-          .style("color", 'red')
+          //.style("stroke", 'red')
+          .style("fill", 'red')
           .text("Injury Increases after Installation");
          
            
@@ -992,17 +1067,14 @@ The Cycling Safety Ordinance (CSO) focuses on a small and specific component of 
         
         bars.append('text')
           .attr('class', 'area_text')
-          .style('color', 'red')
+          .style('stroke', 'red')
           .attr('text-anchor', 'middle')
           .attr("x", function(d) {return xScale(d.area) + barWidth / 2;})
           .attr("y", function(d) {return yScale(d.injuries) - 2 } )
           .text(function(d) {return d.injuries + "%"});
-        
-        
 
       }
       
-      map2022_plot("#viz1_a",injury_percent) 
      
 
 
