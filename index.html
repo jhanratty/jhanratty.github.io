@@ -48,133 +48,183 @@
          flex: 50%;
          padding:12;
        }
-
-        .container {
-          position: absolute;
-          top:100px;
-          left:0px;
-          height: 800px;
-          width: 1000px;
-          box-sizing: border-box;
-        } 
-        
-        .panel {
-          position: absolute;
-          z-index: 1;
-          top: 0px;
-          left: 0px;
-          background-color: rgb(245, 244, 241);
-          opacity:1;
-          height: 100%;
-          width: 100%;
-          box-sizing: border-box; 
-          border:1px solid black;
-          padding:30;
-        }
-        
-        /*### ANNOTATION */
-        :root {
-          --accent-color: #E8336D;
-        }
-            
-        .annotate{
-          font-family: "Open Sans",Helvetica,Arial,sans-serif;
-          font-size: 14px;
-          word-wrap: break-word;
-        }
-        
-        .annotation path {
-          stroke: var(--accent-color);
-          stroke-width:2;
-          fill: none;
-        }
-
-        .annotation text {
-          fill: var(--accent-color);
-          font-size: 20;
-        }
-
-        .annotation-note-title {
-          font-weight: bold;
-        }
-        
-        .annotation.badge path.subject-pointer, .annotation.badge path.subject {
-          fill: var(--accent-color);
-          stroke-width: 3px;
-          stroke-linecap: round;
-        } 
-
-        .annotation.badge path.subject-ring {
-          fill: white;
-          stroke-width: 3px;
-        }
-    
-        .annotation.badge .badge-text {
-          fill: white;
-          font-size: .7em;
-        }
-        
-        rect.annotation-note-bg {
-          fill: rgba(255, 255, 255, 0);
-        }
-            
-        path.note-line{
-            opacity:0
-        }
-        
-        
-        
-       /* ### TOOLTIP FORMATING ### */
-        .annotation-tip .annotation-note-bg {
-          fill:white;
-          fill-opacity:0.9;
-        }
-        
-        .annotation-tip .annotation text {
-          fill:black;
-          font-size:16;
-        }
+       
+       /*PAGE NAVIGATION BUTTONS*/
+      .change-page {
+        list-style-type: none;
+        margin: 25px 0 0 0;
+        padding: 0;
+      }
       
-        #viz0 {
-            background: url(./CSOMap500375NoTitle.png);
-            background-repeat: no-repeat;
-            background-size: auto;
-        }
-        
-        #viz1 {
-            background: url(./CamMap2022.png);
-            background-repeat: no-repeat;
-            background-size: auto;
-            padding:10px;
-        }
+      .change-page li {
+        float: left;
+        margin: 0 5px 0 0;
+        width: 100px;
+        height: 40px;
+        position: relative;
+      }
+      
+      .change-page label,
+      .change-page input {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:lightgray;
+      }
+      
+      .change-page input[type="radio"] {
+        opacity: 0.01;
+        z-index: 100;
+      }
+      
+      .change-page input[type="radio"]:checked+label,
+      .Checked+label {
+        background: lightblue;
+      }
+      
+      .change-page label {
+        padding: 5px;
+        border: 1px solid #CCC;
+        cursor: pointer;
+        z-index: 90;
+        text-align: center;
+      }
+      
+      .change-page label:hover {
+        background: white;
+      }
+      
+      /*end PAGE NAV BUTTONS*/
 
-        .tooltip {
-          opacity: 1;
-          position: absolute;
-          text-align: center;
-          width:60px; height:40px;
-          background: white;
-          border: 1px;
-        }
+      .container {
+        position: absolute;
+        top:100px;
+        left:0px;
+        height: 800px;
+        width: 1000px;
+        box-sizing: border-box;
+      } 
+      
+      .panel {
+        position: absolute;
+        z-index: 1;
+        top: 0px;
+        left: 0px;
+        background-color: rgb(245, 244, 241);
+        opacity:1;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box; 
+        border:1px solid black;
+        padding:30;
+      }
+      
+      /*### ANNOTATION */
+      :root {
+        --accent-color: #E8336D;
+      }
           
-        .horizontal-line {
-           stroke:black;
-           stroke-width: 2px;
-           stroke-dasharray: 4,4;
-        }
-        
-        .area_box {
-          stroke:purple;
-          stroke-width: 2;
-          fill: none;
-        } 
-        
-        .area_text {
-          stroke: purple;
-          fill:purple;
+      .annotate{
+        font-family: "Open Sans",Helvetica,Arial,sans-serif;
+        font-size: 14px;
+        word-wrap: break-word;
+      }
+      
+      .annotation path {
+        stroke: var(--accent-color);
+        stroke-width:2;
+        fill: none;
+      }
+
+      .annotation text {
+        fill: var(--accent-color);
+        font-size: 20;
+      }
+
+      .annotation-note-title {
+        font-weight: bold;
+      }
+      
+      .annotation.badge path.subject-pointer, .annotation.badge path.subject {
+        fill: var(--accent-color);
+        stroke-width: 3px;
+        stroke-linecap: round;
+      } 
+
+      .annotation.badge path.subject-ring {
+        fill: white;
+        stroke-width: 3px;
+      }
+  
+      .annotation.badge .badge-text {
+        fill: white;
+        font-size: .7em;
+      }
+      
+      rect.annotation-note-bg {
+        fill: rgba(255, 255, 255, 0);
+      }
           
-        }
-            
+      path.note-line{
+          opacity:0
+      }
+      
+      
+      
+     /* ### TOOLTIP FORMATING ### */
+      .annotation-tip .annotation-note-bg {
+        fill:white;
+        fill-opacity:0.9;
+      }
+      
+      .annotation-tip .annotation text {
+        fill:black;
+        font-size:16;
+      }
+    
+      #viz0 {
+          background: url(./CSOMap500375NoTitle.png);
+          background-repeat: no-repeat;
+          background-size: auto;
+      }
+      
+      #viz1 {
+          background: url(./CamMap2022.png);
+          background-repeat: no-repeat;
+          background-size: auto;
+          padding:10px;
+      }
+
+      .tooltip {
+        opacity: 1;
+        position: absolute;
+        text-align: center;
+        width:60px; height:40px;
+        background: white;
+        border: 1px;
+      }
+        
+      .horizontal-line {
+         stroke:black;
+         stroke-width: 2px;
+         stroke-dasharray: 4,4;
+      }
+      
+      .area_box {
+        stroke:purple;
+        stroke-width: 2;
+        fill: none;
+      } 
+      
+      .area_text {
+        stroke: purple;
+        fill:purple;
+        
+      }
+          
         
     </style>
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -184,14 +234,33 @@
   <body
     <p>
       <button type="button" onclick="tryThis()">Test</button>
-
     </p>
     <p>
-      <input type="range" id="pageno" name="pageno"
-             value="0", min="0" max="5">
-      <label for="pageno">Page#</label>
+      <ul class="change-page">
+        <li>
+          <input type="radio" id="pg0" value="0" name="cur_page" checked="checked"/>
+          <label for="a25" title="Introduction">1</label>
+        </li>
+        <li>
+          <input type="radio" id="pg1" value="1" name="cur_page" />
+          <label for="a50">2</label>
+        </li>
+        <li>
+          <input type="radio" id="pg2" value="2" name="cur_page"  />
+          <label for="a75">3</label>
+        </li>
+        <li>
+          <input type="radio" id="pg3"value="3" name="cur_page" />
+          <label for="a100">4</label>
+        </li>
+        <li>
+          <input type="button" id="test_next" onclick='tryfun()'/>
+          <label for="test_next">>>></label>
+        </li>
+      </ul>
+
     </p>
-    
+
     <div class=container>
         <div class="panel", id="s0", style="z-index:3;">
           <flex-row>
@@ -354,6 +423,38 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
           d3.select("#viz2").selectAll("#a_viz2")
                 .remove()
         }
+        
+        /* PAGE NAVIGATION */
+        var page = 0
+
+        /* Next page button */
+        function tryfun() {
+          console.log("yeah " + page)
+          switch(+page) {
+            case 0:
+              page = 1
+              break;
+            case 1:
+              page = 2
+              break;
+            case 2:
+              page = 3
+              break
+          }
+          console.log("new: " + "pg" + page )
+          const butt = document.getElementById("pg" + page)
+          butt.checked = true;
+          change_page(page)
+        }
+        
+        /* Page Number buttons*/
+        const buttons = d3.selectAll("input[name='cur_page']");
+        buttons.on('change', function(d) {
+           page = this.value
+           console.log("button" + this.value + " changed to " + page);
+           change_page(page)
+        }); 
+        /* END NAVIGATION BUTTONS */
      
         let injury_percent = [
           {area:"N Mass", injuries: 300},
@@ -392,16 +493,21 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
         var last_num = 10  //last z-index 
         var last_p_id = 'none'
         var p_id_list = ["#s0", "#s1", "#s2", "#s3", "#s4", "#s5", "#s6"]
+ 
         d3.selectAll("input[name='pageno']").on("change", function(d,i){
+           console.log(this.value)
+           change_page(this.value)
+        })
+ 
+     
+     function change_page(p) {
+          p_id = p_id_list[+p]
+          console.log("p_id ", p_id)
           // Reset charts
           console.log("hide viz1_a")
           d3.select("#viz1_a")
             .attr('opacity', 0)
             .style('x', "500");
-
-          console.log(this.value)
-          p_id = p_id_list[this.value]
-          console.log("p_id ", p_id)
           // Prepare new page for slide transition
           if(p_id != last_p_id){
               last_num = last_num + 1
@@ -427,7 +533,7 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
                   .duration(10000)
                   .style('x', "100")
                   .attr('opacity', "1");
-                
+                break;
               case '#s2':
                 console.log("IN #s2");
                 plotvizSbS("#viz2", cso_befaft, cso_befaft_col, ann_viz2 );
@@ -444,8 +550,7 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
               
             }
             
-        })
-     
+        }
      
      staticColor = '#437c90';
      hoverColor = '#eec42d';
