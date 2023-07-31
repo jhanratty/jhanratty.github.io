@@ -233,9 +233,6 @@
   </head>
   <body
     <p>
-      <button type="button" onclick="tryThis()">Test</button>
-    </p>
-    <p>
       <ul class="change-page">
         <li>
           <input type="radio" id="pg0" value="0" name="cur_page" checked="checked"/>
@@ -254,8 +251,8 @@
           <label for="a100">4</label>
         </li>
         <li>
-          <input type="button" id="test_next" onclick='tryfun()'/>
-          <label for="test_next">>>></label>
+          <input type="button" id="test_next" onclick='NextPage()'/>
+          <label for="test_next">Next</label>
         </li>
       </ul>
 
@@ -273,9 +270,12 @@
             </flex-col>
             
             <flex-col>
-<h2>   </h1>
+<h2>   </h2>
 <p>
-The Cambridge Cycling Safety Ordinance (CSO) just completed its third year of implementation. The City Council enacted the CSO in 2019 and amended it in 2020. The ordinance dictates the installation of 22.6 miles of “quick build” or permanent construction separated bike lanes (shown on left) on the city’s busiest corridors by 2026. The ordinance mandates a strict timeline and a separated bike lane design with provisions to discourage the City Manager from changing or delaying the implementation. Despite the word “safety” in the CSO’s title, it does not prescribe any safety requirements for infrastructure design nor does it set safety requirements for cyclists or any other user of the roads. In addition, it does not provide provisions to adjust for unforeseen consequences such as the impact on businesses, unsafe traffic patterns, or parking supply.
+The Cambridge Cycling Safety Ordinance (CSO) just completed its third year of implementation. The City Council enacted the CSO in 2019 and amended it in 2020. The ordinance dictates the installation of 22.6 miles of “quick build” or permanent construction separated bike lanes (shown on left) on the city’s busiest corridors by 2026. 
+</p>
+<p>
+The ordinance mandates a strict timeline and a separated bike lane design with provisions to discourage the City Manager from changing or delaying the implementation. Despite the word “safety” in the CSO’s title, it does not prescribe any safety requirements for infrastructure design nor does it set safety requirements for cyclists or any other user of the roads. In addition, it does not provide provisions to adjust for unforeseen consequences such as the impact on businesses, unsafe traffic patterns, or parking supply.
 </p>
 
             </flex-col>
@@ -293,21 +293,27 @@ The Cambridge Cycling Safety Ordinance (CSO) just completed its third year of im
               <p>
                   <svg id="viz1", width="500", height="500">
                     <g id="s1_chart">
-                       <svg id="viz1_a", x="100", y="170", width="300", height="150", opacity="0"" ></svg>
+                       <svg id="viz1_a", x="90", y="170", width="400", height="250", opacity="0"" ></svg>
                     </g>
                     <g id="s1_boxes", opacity=1>
                       <text class="area_text", x="57", y="10">North Mass Ave</text>
-                      <text class="area_text", style="font-size:80%;", x="57", y="26">Install Sep-2021</text>
-                      <rect class="area_box", id=s1_nma, onmouseover="s1_ttipOn('sl_m')", 
-                            onmouseout="s1_ttipOff()", x="5", y="0", height="40", width="50"></rect>
+                      <text class="area_text", style="font-size:80%;", 
+                            x="57", y="26">Install Sep-2021</text>
+                      <rect class="area_box", id="s1_nma", 
+                            x="5", y="0", height="40", width="50",
+                            onmouseover="s1_ttipOn('sl_m')", onmouseout="s1_ttipOff()"></rect>
                       
                       <text class="area_text", x="162", y="125">Porter Square</text>
-                      <text class="area_text", style="font-size:80%;", x="162", y="139">Install Jul-2022</text>
-                      <rect class="area_box",  x="120", y="115", height="32", width="40"></rect>
+                      <text class="area_text", style="font-size:80%;", 
+                            x="162", y="139">Install Jul-2022</text>
+                      <rect class="area_box", id="s1_psq",
+                            x="120", y="115", height="32", width="40"></rect>
+                            
                       <text class="area_text", x="242", y="340">Mid Mass Ave</text>
                       <text class="area_text", style="font-size:80%;stroke:purple;fill:purple", 
-                                              x="242", y="353">Install Jul-2022</text>
-                      <rect class="area_box", x="190", y="330", height="40", width="50"></rect>
+                            x="242", y="353">Install Jul-2022</text>
+                      <rect class="area_box",  id="s1_psq",
+                            x="190", y="330", height="40", width="50"></rect>
                     </g>
                     <div name="tooltip", opacity=0></div>
                   </svg>
@@ -318,12 +324,16 @@ The Cambridge Cycling Safety Ordinance (CSO) just completed its third year of im
               <h2>
                  The Initial Road Sections
               </h2>
-<p>
+<div>
 The first three CS0 road sections were installed at the end of 2021 and beginning of 2022 on North Mass Ave, Port Square and Mid Mass Ave. This study compares injury rates on these road segments in 2022 with new CSO separated bike lanes with (1) their pre-COVID levels in 2016-2019, and (2) against the rest of Cambridge roads during the same periods. 
-</p>
+</div>
 <p>
-The chart on the left summarizes the study's results showing that road user injuries skyrocketed after installation of separated bike lanes by 158% over pre-COVID rates. This increase occurred while citywide roads saw a slight a less than 1% increase from the pre-COVID level. In 2022, on the combined 1.3 miles of road where separated bike lanes were installed, 31 road users were injured, including those transported to a hospital, compared to the pre- COVID level of 12 injuries, an increase of 19 injuries for 2022.
+ <b>Are we safer? find out </b> <button type="button" style="background-color:red;color:white", onclick="getS2a()">Click Here</button>
 </p>
+
+<div id="s1-text2", style="opacity:0;">
+The chart on the left summarizes the study's results showing that road user injuries skyrocketed after installation of separated bike lanes by 218% over pre-COVID rates. This increase occurred while citywide roads saw a slight a less than 1% increase from the pre-COVID level. In 2022, on the combined 1.3 miles of road where separated bike lanes were installed, 31 road users were injured, including those transported to a hospital, compared to the pre-COVID level of 12 injuries, an increase of 19 injuries for 2022.
+</div>
 <p>
 
 </p>
@@ -356,12 +366,25 @@ The analysis shows that cyclist and motorist injuries increased substantially on
         
         <div class="panel", id="s3">
           <flex-row>
-                  <h1> Cyclist vs Motorist Injuries</h1>
+             <h1> Cyclist vs Motorist Injuries</h1>
           </flex-row>
           <flex-row>
             <flex-col>
-              <h2> New CSO Road Sections</h2>
-              <svg id="viz3", width="500" height="500"></svg>
+               <h2> Road Sections</h2>
+               <p>
+                <label for="SelArea">Filter Area:</label>
+                <select name="SelArea" id="SelArea">
+                  <option value="cso">CSO</option>
+                  <option value="city">Citywide</option>
+                  <option value="nma">N Mass Ave</option>
+                  <option value="psq">Porter SQ</option>
+                  <option value="mid">Mid Mass Ave</option>
+
+                </select>
+              </p>
+              <div id="viz3div">
+                <svg id="viz3", width="500" height="500"></svg>
+              </div>
             </flex-col>
             <flex-col>
 <h2>Increased Injuries</h2>
@@ -374,61 +397,69 @@ Motorist injuries might have increased because the new road configurations are c
 <p>
 Cyclist injuries might occurred predominately at intersections and driveway where riders must exit the protected lanes. Cambridge is one of the densest cities in the US, so these occur every 100 ft.  In addition, the ordinance specifies infrastructure but neglect to address other components of a typical safety program, e.g., training, awareness, registration and enforcement. 
 </p>
+<p>
+The City of Cambridge needs to re-think their cycling safety ordinance implementation.  A more holistic design would take into account all road users and the location to better fit the individual neighborhood.
+</p>
             </flex-col>
           </flex-row>
         </div class='panel'>
          
-        <div class="panel", id="s4">
-          <flex-row>
-                  <h1>More Research</h1>
-          </flex-row>
-
-          <flex-row>
-            <flex-col>
-               <p>This is the first panel and first pane. This might be longer than the line and need to wrap.</p>
-               <svg id="viz4", width="500" height="500"></svg>
-            </flex-col>
-            <flex-col>
-              <div class='anno', id='pan21'>This is the first panel and second pane this could wrap also.</div>
-              <div class='anno', id='pan22'>This is the second paragraph</div>
-            </flex-col>
-          </flex-row>
-          <flex-row>
-              <flex-col>
-                <p> another chart</p>
-              </flex-col>
-              <flex-col>
-                <p> chart 4</p>
-              </flex-col>
-            </flex-row>
-        </div class='panel'>
-        
-        <div class="panel", id="s5">
-          <flex-row>
-              <flex-col>
-                   <p>This is the 2nd panel and first pane.</p>
-                   <svg id="viz5", width="500" height="500"></svg>
-              </flex-col>
-              <flex-col>
-                <p>This is the 2nd panel and second pane.</p>
-              </flex-col>
-            </flex-row>
-          </div class='panel'>
       </div class='container'>
 
     
     <script>
-        function tryThis() {
-          console.log("tryThis");
-          d3.select("#viz2").selectAll("#a_viz2")
-                .remove()
+        // function to move chart onto map in scene2
+        function getS2a() {
+          console.log("getSa")
+          d3.select("#s1-text2")
+            .transition()
+            .duration(2000)
+            .style("opacity", 1)
+          d3.select("#viz1_a")
+            .transition()
+            .duration(2000)
+            .style('x', "100")
+            .attr('opacity', "1");
         }
         
         /* PAGE NAVIGATION */
+        // Navagation band of numbered buttons
+        d3.select("#SelArea")
+          .on("change", function(d){
+              console.log(this.value)
+              d3.select("#viz3").text("")
+              switch(this.value) {
+                case "cso":
+                  console.log("choose cso")
+                  d3.select("#viz3 > *").remove()
+                  plotviz("#viz3", cso_annual, cso_annual_col, ann_vizcso, 9.75)
+                  break;
+                case "city":
+                  console.log("choose city")
+                  d3.select("#viz3 > *").remove()
+                  plotviz("#viz3", city_annual, city_annual_col, ann_vizcity, 211.5)
+                  break;
+                case "nma":
+                  console.log("choose nma")
+                  d3.select("#viz3 > *").remove()
+                  plotviz("#viz3", nma_annual, nma_annual_col, ann_viznma, 2.75)
+                  break;
+                case "psq":
+                  console.log("choose psq")
+                  d3.select("#viz3 > *").remove()
+                  plotviz("#viz3", psq_annual, psq_annual_col, ann_vizpsq, 3.75)
+                  break;
+                case "mid":
+                  console.log("choose mid")
+                  d3.select("#viz3 > *").remove()
+                  plotviz("#viz3", mid_annual, mid_annual_col, ann_vizmid, 3.25)
+                  break;
+              }
+          })
+        
         var page = 0
-
         /* Next page button */
-        function tryfun() {
+        function NextPage() {
           console.log("yeah " + page)
           switch(+page) {
             case 0:
@@ -456,23 +487,16 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
         }); 
         /* END NAVIGATION BUTTONS */
      
+     
+        // create graph that float over map in scene 2
         let injury_percent = [
-          {area:"N Mass", injuries: 300},
-          {area:"Porter SQ", injuries: 150},
-          {area:"Mid Mass", injuries: 80},
-          {area:"Citywide", injuries: 1}]
+          {area:"N Mass", injuries: 336},
+          {area:"Porter SQ", injuries: 167},
+          {area:"Mid Mass", injuries: 177},
+          {area:"Citywide", injuries: 0.7}]
  
         map2022_plot("#viz1_a",injury_percent) 
         
-        let cso_befaft_col = ["Area", "Pre-Covid", "2022 CSO installation"]
-        let cso_befaft = [
-          {a:"Mid Mass Ave",  b:5,  c:9},
-          {a:"N Mass Ave",    b:3,  c:12},
-          {a:"Porter Square", b:4,  c:10},
-          {a:"Total",         b:12, c:31}
-        ]
-
-
     
         function s1_ttipOn(d) {
           console.log("qqqqqqq")
@@ -504,7 +528,13 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
           p_id = p_id_list[+p]
           console.log("p_id ", p_id)
           // Reset charts
+          const butt = document.getElementById("SelArea")
+          butt.value = "cso";
+          //d3.select("#viz3 > *").remove()
+          d3.select("viz3").text('')
+          d3.select("#viz3 > *").remove()
           console.log("hide viz1_a")
+          
           d3.select("#viz1_a")
             .attr('opacity', 0)
             .style('x', "500");
@@ -528,11 +558,6 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
               case '#s1':
                 console.log("IN #s1")
                 console.log("#viz1_a transition");
-                d3.select("#viz1_a")
-                  .transition()
-                  .duration(10000)
-                  .style('x', "100")
-                  .attr('opacity', "1");
                 break;
               case '#s2':
                 console.log("IN #s2");
@@ -541,11 +566,7 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
                 break;
               case '#s3':
                 console.log("IN #s3")
-                plotviz("#viz3", cso_annual, cso_annual_col, ann_viz2a, 10)
-                break;
-              case '#s3':
-                plotvizSbS("#viz4", city_annual, city_annual_col, ann_viz2a, 100)
-                //plotviz("#viz4", citywide, ann_viz2a, "Page 3")
+                plotviz("#viz3", cso_annual, cso_annual_col, ann_vizcso, 9.75)
                 break;
               
             }
@@ -568,16 +589,19 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
         .text('a simple tooltip');
 
     // Data for plots
-    
-    let city_befaft_col = ["Area", "Pre-Covid", "2022 CSO installation"]
-    let city_befaft = [
-      {a:"Rest of City", b:50, c:90}
-    ]
+        let cso_befaft_col = ["Area", "Pre-Covid", "2022 CSO installation"]
+        let cso_befaft = [
+          {a:"N Mass Ave",    b:2.75,  c:12},
+          {a:"Porter Square", b:3.75,  c:10},
+          {a:"Mid Mass Ave",  b:3.25,  c:9},
+          {a:"Total",         b:9.75, c:31}
+        ]
+
     
     let cso_annual_col = ["Year", "Bikes", "Autos"]
     let cso_annual = [
       {a:2016, injuries:8, b:7, c:1},
-      {a:2017, injuries:11, b:6, c:5},
+      {a:2017, injuries:10, b:6, c:4},
       {a:2018, injuries:11, b:4, c:7},
       {a:2019, injuries:10, b:5, c:5},
       {a:2020, injuries:8, b:6, c:2},
@@ -587,22 +611,47 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
 
     let city_annual_col = ["Year", "Bikes", "Autos"]
     let city_annual = [
-      {a:2016, injuries:227, b:65, c:162},
-      {a:2017, injuries:220, b:79, c:146},
-      {a:2018, injuries:215, b:66, c:149},
-      {a:2019, injuries:225, b:83, c:142},
-      {a:2020, injuries:125, b:34, c:91},
-      {a:2021, injuries:185, b:54, c:131},
-      {a:2022, injuries:265, b:87, c:178}
+      {a:2016, injuries:218, b:57, c:161},
+      {a:2017, injuries:210, b:71, c:139},
+      {a:2018, injuries:200, b:60, c:140},
+      {a:2019, injuries:218, b:78, c:140},
+      {a:2020, injuries:117, b:29, c:88},
+      {a:2021, injuries:174, b:50, c:124},
+      {a:2022, injuries:213, b:65, c:148}
     ];
     
- 
-    //Checking text setion for <div call="anno">      
-    d3.selectAll(".anno")
-      .on('mouseover', function(){
-        console.log("annotation")
-        console.log(this.id)  
-      })
+    let nma_annual_col = ["Year", "Bikes", "Autos"]
+    let nma_annual = [
+      {a:2016, injuries:1, b:1, c:0},
+      {a:2017, injuries:3, b:3, c:1},
+      {a:2018, injuries:3, b:3, c:0},
+      {a:2019, injuries:1, b:1, c:2},
+      {a:2020, injuries:2, b:2, c:0},
+      {a:2021, injuries:5, b:0, c:5},
+      {a:2022, injuries:12, b:5, c:7}
+    ];
+    
+    let psq_annual_col = ["Year", "Bikes", "Autos"]
+    let psq_annual = [
+      {a:2016, injuries:3, b:2, c:1},
+      {a:2017, injuries:3, b:1, c:2},
+      {a:2018, injuries:6, b:0, c:6},
+      {a:2019, injuries:3, b:2, c:1},
+      {a:2020, injuries:4, b:4, c:0},
+      {a:2021, injuries:5, b:2, c:3},
+      {a:2022, injuries:10, b:5, c:5}
+    ];
+    
+    let mid_annual_col = ["Year", "Bikes", "Autos"]
+    let mid_annual = [
+      {a:2016, injuries:4, b:4, c:0},
+      {a:2017, injuries:3, b:2, c:1},
+      {a:2018, injuries:2, b:1, c:1},
+      {a:2019, injuries:4, b:2, c:2},
+      {a:2020, injuries:2, b:0, c:2},
+      {a:2021, injuries:3, b:2, c:1},
+      {a:2022, injuries:9, b:5, c:4}
+    ];
 
         
     // ploting function STACKED
@@ -742,7 +791,6 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
     	      console.log("xScale(2022)" + xScale(2022)) */
     	      console.log("tooltip" + vid)
     	      
-
         	  annotationtip = d3.annotation()
             .type(d3.annotationLabel)
             .annotations([d].map(function(d){
@@ -752,7 +800,7 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
                 dx: 0,
                 dy: 0,
                 note: {
-                   title: ["Injuries "+  [d[0]-d[1]]],
+                   title: [[d[1]-d[0]] +" Injuries"],
                    wrap:200,
                    bgPadding: {top:4,right:3,left:3,bottom:-5},
                 },
@@ -771,8 +819,7 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
         ///### End tooltip
         
       // ANNOTATIONS
-     
-      function showAnnotation() {
+       
         if (vannotation.length > 0) {
           console.log("annotation found", vannotation.length)
           ann1 = g.append("g")
@@ -786,11 +833,11 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
         else {
           console.log("no annotation", vannotation.length)
         }
-      }
       
       function removeAnnotation() {
         ann1.selectAll("g").remove()
       }
+ 
         
     } //end plotviz function
     
@@ -854,20 +901,6 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
           .attr('height', d=> height - yScale(d.c))
           .style('fill', color('c'));
         
-        // Add text to each bar graph
-        // text-anchor middle is the svg text equivalent to transform: translate(-50%, -50%) for regular CSS divs
-        bar.append('text')
-          .text(d => d.b)
-          .attr('text-anchor', 'middle')
-          .attr('x', barWidth / 2)
-          .attr('y', d => yScale(d.b) - 5);
-        
-        bar2.append('text')
-          .text(d => d.c)
-          .attr('text-anchor', 'middle')
-          .attr('transform', d => `translate(${barWidth/2},${yScale(d.c) -5})`)
-        
-        
         // Add X axis at bottom of chart (we must do this at bottom after data has been appended to svg)
             
         g.append("text")
@@ -889,140 +922,136 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
              return d;
          }).ticks(4));
          
-         
-          // Add chart y axis label 
-          svg.append('text')
-            .text('Injuries')
-            .attr('transform', 'rotate(-90)')
-            .attr('text-anchor', 'middle')
-            .attr('x', 0 - (height / 2))
-            .attr('y', 0 - (margin.left / 2))
-         
+        // Add chart y axis label 
+        svg.append('text')
+          .text('Injuries')
+          .attr('transform', 'rotate(-90)')
+          .attr('text-anchor', 'middle')
+          .attr('x', 0 - (height / 2))
+          .attr('y', 0 - (margin.left / 2))
+       
+        
+        // HORIZONTAL LINE FOR AVERAGE 
+        if(vline != 0) {
+          console.log("VLINE++++++" + vline)
+          g.append("line")
+           .attr("class", "horizontal-line")
+           .attr("x1", xScale(2016))
+           .attr("y1", yScale(vline))
+           .attr("x2", xScale(2022)+30)
+           .attr("y2", yScale(vline));
           
-          // HORIZONTAL LINE FOR AVERAGE 
-          if(vline != 0) {
-            console.log("VLINE++++++" + vline)
-            g.append("line")
-             .attr("class", "horizontal-line")
-             .attr("x1", xScale(2016))
-             .attr("y1", yScale(vline))
-             .attr("x2", xScale(2022)+30)
-             .attr("y2", yScale(vline));
-            
-            g.append("text")
-             .attr("x", xScale(2022) + 30)
-             .attr("y", yScale(vline))
-             .text("Pre-Covid Ave");
-          }
+          g.append("text")
+           .attr("x", xScale(2022) + 30)
+           .attr("y", yScale(vline))
+           .text("Pre-Covid Ave");
+        }
 
           
-          if(vlegend) {
-              var legend = g.selectAll('.legend')
-                  .data(color.domain())
-                  .enter()
-                  .append('g')
-                  .attr('class', 'legend')
+        if(vlegend) {
+            var legend = g.selectAll('.legend')
+                .data(color.domain())
+                .enter()
+                .append('g')
+                .attr('class', 'legend')
+          
+            var legendSpacing = 80;
             
-              var legendSpacing = 80;
-              
-              legend.append('text')
-                .text(function(d, i) {
-                   return vdat_c[i + 1]})  //d => d)
-                .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${(20)})`)
-              
-              legend.append('rect')
-                .attr('width', legendSpacing/2)
-                .attr('height', 5)
-                .style('fill', color)
-                .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${( 0 )})`)
-          }
-      
-          // TOOLTIPS
-          //mouseover event handler function
-          tipg = svg.append("g")
-            .attr("transform", "translate(" + 50 + "," + 10 + ")")
-      	    .attr("class", "annotation-tip");
-      	    
-      	  function showTooltip(d){
-      	    console.log("show tooltip")
-          	  annotationtip = d3.annotation()
-              .type(d3.annotationLabel)
-              .annotations([d].map(function(d){
-                return {
-                  y:yScale(d.b),
-                  x:xScale(d.a),
-                  dx: 0,
-                  note: {
-                     title: ["b:"+  d.b],
-                     wrap:200,
-                     bgPadding: {top:4,right:3,left:3,bottom:-5},
-                  },
-                  disable:["connector","subject"]
-                };
-              })) 
-              
-              tipg.call(annotationtip);
-      	   }   
-      	    
-          //mouseout event handler function
-          function hideTooltip(){
-              tipg.selectAll("g")
-                .remove()
-          }
-          // TOOLTIP2 for bar2
-          tipg2 = svg.append("g")
-            .attr("transform", "translate(" + 50 + "," + 10 + ")")
-      	    .attr("class", "annotation-tip");
-      	    
-      	  function showTooltip2(d){
-      	      console.log("show tooltip2")
-          	  annotationtip = d3.annotation()
-              .type(d3.annotationLabel)
-              .annotations([d].map(function(d){
-                return {
-                  y:yScale(d.c),
-                  x:xScale(d.a) + barWidth,
-                  dx: 0,
-                  note: {
-                     title: ["c:"+  d.c],
-                     wrap:200,
-                     bgPadding: {top:4,right:3,left:3,bottom:-5},
-                  },
-                  disable:["connector","subject"]
-                };
-              })) 
-              
-              tipg2.call(annotationtip);
-      	   }   
-      	    
-          //mouseout event handler function
-          function hideTooltip2(){
-              tipg2.selectAll("g")
-                .remove()
-          }
-        ///### End tooltip
-        
-      // ANNOTATIONS
-       
-   /*   function showAnnotation() { */
-        if (vannotation.length > 0) {
-          console.log("annotation found", vannotation.length)
-          ann1 = g.append("g")
-              .attr("transform", "translate(" + 50 + "," + 10 + ")")
-  
-          const makeAnnotations = d3.annotation()
-            .annotations(vannotation)
-      
-          ann1.call(makeAnnotations)
-        } 
-        else {
-          console.log("no annotation", vannotation.length)
+            legend.append('text')
+              .text(function(d, i) {
+                 return vdat_c[i + 1]})  //d => d)
+              .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${(20)})`)
+            
+            legend.append('rect')
+              .attr('width', legendSpacing/2)
+              .attr('height', 5)
+              .style('fill', color)
+              .attr('transform', (d, i) => `translate(${(i+.25) * legendSpacing}, ${( 0 )})`)
         }
-  /*    } */
+    
+        // TOOLTIPS
+        //mouseover event handler function
+        tipg = svg.append("g")
+          .attr("transform", "translate(" + 50 + "," + 10 + ")")
+    	    .attr("class", "annotation-tip");
+    	    
+    	  function showTooltip(d){
+    	    console.log("show tooltip")
+        	  annotationtip = d3.annotation()
+            .type(d3.annotationLabel)
+            .annotations([d].map(function(d){
+              return {
+                y:yScale(d.b),
+                x:xScale(d.a),
+                dx: 0,
+                note: {
+                   title: [d.b + " Injuries (Pre-COVID) "],
+                   wrap:200,
+                   bgPadding: {top:4,right:3,left:3,bottom:-5},
+                },
+                disable:["connector","subject"]
+              };
+            })) 
+            
+            tipg.call(annotationtip);
+    	   }   
+    	    
+        //mouseout event handler function
+        function hideTooltip(){
+            tipg.selectAll("g")
+              .remove()
+        }
+        // TOOLTIP2 for bar2
+        tipg2 = svg.append("g")
+          .attr("transform", "translate(" + 50 + "," + 10 + ")")
+    	    .attr("class", "annotation-tip");
+    	    
+    	  function showTooltip2(d){
+    	      console.log("show tooltip2")
+        	  annotationtip = d3.annotation()
+            .type(d3.annotationLabel)
+            .annotations([d].map(function(d){
+              return {
+                y:yScale(d.c),
+                x:xScale(d.a) + barWidth,
+                dx: 0,
+                note: {
+                   title: [d.c + " Injuries (Post Install):"],
+                   wrap:200,
+                   bgPadding: {top:4,right:3,left:3,bottom:-5},
+                },
+                disable:["connector","subject"]
+              };
+            })) 
+            
+            tipg2.call(annotationtip);
+    	   }   
+    	    
+        //mouseout event handler function
+        function hideTooltip2(){
+            tipg2.selectAll("g")
+              .remove()
+        }
+      ///### End tooltip
       
-      function removeAnnotation() {
-        ann1.selectAll("g").remove()
+      // ANNOTATIONS
+      if (vannotation.length > 0) {
+        console.log("annotation found", vannotation.length)
+        ann1 = g.append("g")
+            .attr("transform", "translate(" + 50 + "," + 10 + ")")
+
+        const makeAnnotations = d3.annotation()
+          .annotations(vannotation)
+    
+        ann1.call(makeAnnotations)
+      } 
+      else {
+        console.log("no annotation", vannotation.length)
       }
+    
+    function removeAnnotation() {
+      ann1.selectAll("g").remove()
+    }
  
  
     }  //## END plotvizSbS
@@ -1034,7 +1063,7 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
           id: "a_viz2",
           type: d3.annotationXYThreshold,
           note:{
-            label: "158% More Injuries",
+            label: "218% More Injuries",
           },
           color: ["purple"],
           x: 255,  //xScale(2022), 
@@ -1043,69 +1072,115 @@ Cyclist injuries might occurred predominately at intersections and driveway wher
           dy: -10,
           subject:{
              y1:30,
-             y2:210,
+             y2:250,
+          }
+        }
+          
+      ]
+   const ann_vizcso = 
+       [
+        {
+          id: "a_viz2",
+          type: d3.annotationXYThreshold,
+          note:{
+            label: "218% More Injuries",
+          },
+          color: ["purple"],
+          x: 245,  //xScale(2022), 
+          y:  120,
+          dx: -40,
+          dy: -10,
+          subject:{
+             y1:30,
+             y2:260,
+          }
+        }
+          
+      ]
+   const ann_vizcity = 
+       [
+        {
+          id: "a_viz2",
+          type: d3.annotationXYThreshold,
+          note:{
+            label: "0.7% More Total Injuries",
+          },
+          color: ["purple"],
+          x: 245,  //xScale(2022), 
+          y:  30,
+          dx: -20,
+          dy: -3,
+          subject:{
+             y1:28,
+             y2:32,
+          }
+        }
+          
+      ]
+   const ann_viznma = 
+       [
+        {
+          id: "a_viz2",
+          type: d3.annotationXYThreshold,
+          note:{
+            label: "336% More Total Injuries",
+          },
+          color: ["purple"],
+          x: 245,  //xScale(2022), 
+          y:  120,
+          dx: -40,
+          dy: -10,
+          subject:{
+             y1:30,
+             y2:290,
+          }
+        }
+          
+      ]
+   const ann_vizpsq = 
+       [
+        {
+          id: "a_viz2",
+          type: d3.annotationXYThreshold,
+          note:{
+            label: "167% More Total Injuries",
+          },
+          color: ["purple"],
+          x: 245,  //xScale(2022), 
+          y:  120,
+          dx: -40,
+          dy: -10,
+          subject:{
+             y1:30,
+             y2:240,
           }
         }
           
       ]
    
-
-
-
-   const ann_viz2a = 
+const ann_vizmid = 
        [
-         /*{
-            note: {
-              label: "Here is the annotation label",
-              title: "Annotation title"
-            },
-            connector: {
-              end: "dot",        // Can be none, or arrow or dot
-              type: "line",      // ?? don't know what it does
-              lineType : "vertical",    // ?? don't know what it does
-              endScale: 4     // dot size
-            },
-            color: ["black"],
-            x: xScale(2020)+10,
-            y: 160,
-            dy: -70,
-            dx: width  - xScale(2020)
-          },*/
         {
-          id: "viz2_1",
+          id: "a_viz2",
           type: d3.annotationXYThreshold,
           note:{
-            title: "158% More Injuries",
+            label: "180% More Total Injuries",
           },
           color: ["purple"],
-          x: 346,  //xScale(2022), 
-          y: 0,
-          dx: 10,
-          dy: 10,
+          x: 245,  //xScale(2022), 
+          y:  120,
+          dx: -40,
+          dy: -10,
           subject:{
-             y1:-100,
-             y2: 100,
+             y1:30,
+             y2:240,
           }
-        } /*,
-          {
-            id:"viz2_2",
-            type:d3.annotationXYThreshold,
-            note: {
-          	  label: "2016-2018 Average",
-            },
-            disable: 'connector',
-            color: ["purple"],
-            x: 23,   //xScale(2016),
-            y: 100,
-            dy:-10,
-            dx:10,
-            subject: {
-        	    x1: 23 - 75, //xScale(2016)-75,
-            	x2: 346,    //xScale(2022)
-            } 
-        }*/
+        }
           
       ]
+
+
+ 
    
       // S1 Map2022 Features
 
