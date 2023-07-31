@@ -300,8 +300,7 @@ The ordinance mandates a strict timeline and a separated bike lane design with p
                       <text class="area_text", style="font-size:80%;", 
                             x="57", y="26">Install Sep-2021</text>
                       <rect class="area_box", id="s1_nma", 
-                            x="5", y="0", height="40", width="50",
-                            onmouseover="s1_ttipOn('sl_m')", onmouseout="s1_ttipOff()"></rect>
+                            x="5", y="0", height="40", width="50"></rect>
                       
                       <text class="area_text", x="162", y="125">Porter Square</text>
                       <text class="area_text", style="font-size:80%;", 
@@ -498,21 +497,6 @@ The City of Cambridge needs to re-think their cycling safety ordinance implement
         map2022_plot("#viz1_a",injury_percent) 
         
     
-        function s1_ttipOn(d) {
-          console.log("qqqqqqq")
-          console.log("= ", d)
-          console.log(d3.mouse)
-          tooltip
-              .style("opacity", 1)
-              .style("left", (d3.pageX) + "px")
-              .style("top",  (d3.pageY) + "px")
-              .html("the is it")
-        }
-        
-        function s1_ttipOff() {
-          console.log('qq-out')
-        }
-        
         // INPUT PAGE SLIDER
         var last_num = 10  //last z-index 
         var last_p_id = 'none'
@@ -522,7 +506,6 @@ The City of Cambridge needs to re-think their cycling safety ordinance implement
            console.log(this.value)
            change_page(this.value)
         })
- 
      
      function change_page(p) {
           p_id = p_id_list[+p]
@@ -530,14 +513,16 @@ The City of Cambridge needs to re-think their cycling safety ordinance implement
           // Reset charts
           const butt = document.getElementById("SelArea")
           butt.value = "cso";
-          //d3.select("#viz3 > *").remove()
-          d3.select("viz3").text('')
-          d3.select("#viz3 > *").remove()
-          console.log("hide viz1_a")
+          d3.select("viz3").text('');
+          d3.select("#viz3 > *").remove();
+          console.log("hide viz1_a");
           
           d3.select("#viz1_a")
             .attr('opacity', 0)
             .style('x', "500");
+          d3.select("#s1-text2")
+            .style("opacity", 0);
+
           // Prepare new page for slide transition
           if(p_id != last_p_id){
               last_num = last_num + 1
@@ -568,36 +553,19 @@ The City of Cambridge needs to re-think their cycling safety ordinance implement
                 console.log("IN #s3")
                 plotviz("#viz3", cso_annual, cso_annual_col, ann_vizcso, 9.75)
                 break;
-              
             }
-            
         }
      
-     staticColor = '#437c90';
-     hoverColor = '#eec42d';
-     tooltip = d3
-        .select('body')
-        .append('div')
-        .attr('class', 'd3-tooltip')
-        .style('position', 'absolute')
-        .style('z-index', '10')
-        .style('visibility', 'hidden')
-        .style('padding', '10px')
-        .style('background', 'rgba(0,0,0,0.6)')
-        .style('border-radius', '4px')
-        .style('color', '#fff')
-        .text('a simple tooltip');
 
     // Data for plots
-        let cso_befaft_col = ["Area", "Pre-Covid", "2022 CSO installation"]
-        let cso_befaft = [
-          {a:"N Mass Ave",    b:2.75,  c:12},
-          {a:"Porter Square", b:3.75,  c:10},
-          {a:"Mid Mass Ave",  b:3.25,  c:9},
-          {a:"Total",         b:9.75, c:31}
-        ]
+      let cso_befaft_col = ["Area", "Pre-Covid", "2022 CSO installation"]
+      let cso_befaft = [
+        {a:"N Mass Ave",    b:2.75,  c:12},
+        {a:"Porter Square", b:3.75,  c:10},
+        {a:"Mid Mass Ave",  b:3.25,  c:9},
+        {a:"Total",         b:9.75, c:31}
+      ]
 
-    
     let cso_annual_col = ["Year", "Bikes", "Autos"]
     let cso_annual = [
       {a:2016, injuries:8, b:7, c:1},
@@ -653,7 +621,6 @@ The City of Cambridge needs to re-think their cycling safety ordinance implement
       {a:2022, injuries:9, b:5, c:4}
     ];
 
-        
     // ploting function STACKED
     function plotviz(vid, vdat, vdat_c, vannotation="", vline=0, vlegend=true,  vtitle="") {
         var svg = d3.select(vid),
@@ -863,7 +830,7 @@ The City of Cambridge needs to re-think their cycling safety ordinance implement
     
         var color = d3.scaleOrdinal()
           .domain(victims)
-           .range(['#e41a1c','#377eb8','#4daf4a']);
+            .range(['green', 'purple']);  //.range(['#e41a1c','#377eb8','#4daf4a']);
     
     
         //-------------
@@ -1056,7 +1023,80 @@ The City of Cambridge needs to re-think their cycling safety ordinance implement
  
     }  //## END plotvizSbS
 
+   
+    // Sceen 2 map overlay SVG
+    function map2022_plot(viz, vdat) {
+        var svg = d3.select(viz),
+            w = svg.attr('width'),
+            h = svg.attr("height");
+            
+        console.log("---", w, "  ", h)
+        svg.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", w)
+            .attr("height", h)
+            .attr("opacity", .4)
+            .attr("fill", "LightGray");
+            
+        var margin = {top: 35, bottom: 25, left: 0, right: 0},
+            width = w - 10, //margin.right - margin.left,
+            height = h - margin.top - margin.bottom;
+        
+        console.log("width: " + width + "  height: " + height)
+        
+       var g = svg.append("g")
+               .attr("transform", "translate(" + 0 + "," + 25 + ")");
+         
+       var xScale = d3.scaleBand().range ([0, width]).padding(0.4),
+           yScale = d3.scaleLinear().range ([height, 0]);
+      
+        yScale.domain([0, d3.max(vdat, function(d) { return d.injuries * 1.2; }) ]);
+        xScale.domain(vdat.map(function(d) { return d.area; }));
+        
+        var barWidth = (width / vdat.length) / 2; // bar height equidistant across graph height
+  
+        const baxis = g.append("g")
+         .attr("class", "axis1")
+         .attr("transform", "translate(0," + height + ")")
+         .call(d3.axisBottom(xScale));
+         
+         baxis
+          .style("font-size", "9px")
+        
+         let bars = g.selectAll('.area_bar')
+            .data(vdat)
+            .enter()
+            .append("g");
+ 
+        bars.append("text")
+          .attr("x", 10)
+          .attr("y", -10)
+          .style("font-size", "18px")
+          //.style("stroke", 'red')
+          .style("fill", 'red')
+          .text("Injury Increases after Installation");
+         
+           
+        bars.append('rect')
+            .attr('class', 'area_bar')
+            .style('fill', 'blue')
+            .attr('x', function(d) {return xScale(d.area); })
+            .attr('y', function(d) {return yScale(d.injuries); })
+            .attr('width', xScale.bandwidth())
+            .attr('height', function(d) {return height - yScale(d.injuries); } );
+        
+        bars.append('text')
+          .attr('class', 'area_text')
+          .style('stroke', 'red')
+          .attr('text-anchor', 'middle')
+          .attr("x", function(d) {return xScale(d.area) + barWidth / 2;})
+          .attr("y", function(d) {return yScale(d.injuries) - 2 } )
+          .text(function(d) {return d.injuries + "%"});
 
+      }
+      
+   // ANNOTATION CONFIG  
    const ann_viz2 = 
        [
         {
@@ -1179,83 +1219,6 @@ const ann_vizmid =
           
       ]
 
-
- 
-   
-      // S1 Map2022 Features
-
-    function map2022_plot(viz, vdat) {
-        var svg = d3.select(viz),
-            w = svg.attr('width'),
-            h = svg.attr("height");
-            
-        console.log("---", w, "  ", h)
-        svg.append("rect")
-            .attr("x", 0)
-            .attr("y", 0)
-            .attr("width", w)
-            .attr("height", h)
-            .attr("opacity", .4)
-            .attr("fill", "LightGray");
-            
-        var margin = {top: 35, bottom: 25, left: 0, right: 0},
-            width = w - 10, //margin.right - margin.left,
-            height = h - margin.top - margin.bottom;
-        
-        console.log("width: " + width + "  height: " + height)
-        
-       var g = svg.append("g")
-               .attr("transform", "translate(" + 0 + "," + 25 + ")");
-         
-       var xScale = d3.scaleBand().range ([0, width]).padding(0.4),
-           yScale = d3.scaleLinear().range ([height, 0]);
-      
-        yScale.domain([0, d3.max(vdat, function(d) { return d.injuries * 1.2; }) ]);
-        xScale.domain(vdat.map(function(d) { return d.area; }));
-        
-        var barWidth = (width / vdat.length) / 2; // bar height equidistant across graph height
-  
-        const baxis = g.append("g")
-         .attr("class", "axis1")
-         .attr("transform", "translate(0," + height + ")")
-         .call(d3.axisBottom(xScale));
-         
-         baxis
-          .style("font-size", "9px")
-        
-         let bars = g.selectAll('.area_bar')
-            .data(vdat)
-            .enter()
-            .append("g");
- 
-        bars.append("text")
-          .attr("x", 10)
-          .attr("y", -10)
-          .style("font-size", "18px")
-          //.style("stroke", 'red')
-          .style("fill", 'red')
-          .text("Injury Increases after Installation");
-         
-           
-        bars.append('rect')
-            .attr('class', 'area_bar')
-            .style('fill', 'blue')
-            .attr('x', function(d) {return xScale(d.area); })
-            .attr('y', function(d) {return yScale(d.injuries); })
-            .attr('width', xScale.bandwidth())
-            .attr('height', function(d) {return height - yScale(d.injuries); } );
-        
-        bars.append('text')
-          .attr('class', 'area_text')
-          .style('stroke', 'red')
-          .attr('text-anchor', 'middle')
-          .attr("x", function(d) {return xScale(d.area) + barWidth / 2;})
-          .attr("y", function(d) {return yScale(d.injuries) - 2 } )
-          .text(function(d) {return d.injuries + "%"});
-
-      }
-      
-     
 
 
           
